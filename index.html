@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <title>Nagabhushan S N - Homepage</title>
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- For academic icons - https://jpswalsh.github.io/academicons/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <meta charset="UTF-8">
     <meta name="description" content="Homepage of Nagabhushan S N">
     <meta name="keywords" content="Nagabhushan, Webpage, Homepage, Personal">
@@ -11,43 +16,77 @@
 </head>
 <body>
 
-<div>
-    <h1 id="nameTitle">Nagabhushan S N</h1>
+<!-- Navigation Sidebar - Start-->
+<!-- W3 Schools / W3CSS / Nature Potfolio Template-->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+    <div class="w3-container">
+        <h3>Nagabhushan S N</h3>
+    </div>
+    <div class="w3-bar-block">
+        <a href="index.html" class="w3-bar-item w3-button">Home</a>
+        <a href="research/index.html" class="w3-bar-item w3-button">Research</a>
+        <a href="publications/index.html" class="w3-bar-item w3-button">Publications</a>
+        <a href="projects/index.html" class="w3-bar-item w3-button">Projects</a>
+        <a href="miscellaneous/index.html" class="w3-bar-item w3-button">Miscellaneous</a>
+        <a href="project_ideas/index.html" class="w3-bar-item w3-button">Project Ideas</a>
+    </div>
+    <div class="w3-panel w3-large">
+        <a href="https://linkedin.com/in/nagabhushan-s-n-52391a68" target="_blank"><i
+                class="fa fa-linkedin color-linkedin w3-hover-opacity"></i></a> &ensp;
+        <a href="https://github.com/NagabhushanSN95" target="_blank"><i
+                class="fa fa-github w3-hover-opacity"></i></a> &ensp;
+        <a href="https://stackexchange.com/users/4060371/nagabhushan-s-n?tab=accounts" target="_blank"><i
+                class="fa fa-stack-exchange w3-hover-opacity"></i></a> &ensp;
+        <a href="https://scholar.google.com/citations?hl=en&user=kFbFZHIAAAAJ" target="_blank"><i
+                class="ai ai-google-scholar color-google-scholar w3-hover-opacity"></i></a> &ensp;
+        <a href="https://orcid.org/0000-0002-2266-759X" target="_blank"><i
+                class="ai ai-orcid color-orcid w3-hover-opacity"></i></a> &ensp;
+        <a href="https://publons.com/researcher/3835716/nagabhushan-s-n/" target="_blank"><i
+                class="ai ai-publons color-publons w3-hover-opacity"></i></a> &ensp;
+    </div>
+    <div class="w3-panel w3-large" style="margin-top: 10px">
+        <a href="https://drive.google.com/file/d/155jbqmSSLoF7yhlFDoL6EvFJh20RMtQv/view" target="_blank">CV</a> <br/>
+        <a href="https://drive.google.com/file/d/14qSW7_JkwjBjbT132g5Cb5BN2_MvVei5/view" target="_blank">Resume</a>
+    </div>
 </div>
-<div>
-    <p>This site is still under construction. For now, please visit <a
-            href="https://sites.google.com/site/nagabhushansn95">here</a></p>
+<!-- Navigation Sidebar - End-->
+
+<!-- Page content - Start -->
+<div class="w3-container" style="margin-left:15%">
+    <div>
+        <h1 id="nameTitle">Nagabhushan S N's Homepage</h1>
+    </div>
+    <div>
+        <p>This site is still under construction. For now, please visit <a
+                href="https://sites.google.com/site/nagabhushansn95">here</a></p>
+    </div>
+    <div>
+        <img src="Nagabhushan_Photo.jpg" alt="Profile Photo" width="276" height="354">
+    </div>
+
+    <h4>PhD Scholar</h4>
+    <a href="http://ece.iisc.ac.in/" target="_blank">Department of Electrical Communication Engineering</a> <br/>
+    <a href="http://www.iisc.ac.in/" target="_blank">Indian Institute of Science (IISc), Bengaluru</a> <br/>
+
+    Email:
+    <button id="email" onclick="displayEmail()">Click here to reveal email id</button>
+    <br>
+    <script>
+        function displayEmail() {
+            var email_button = document.getElementById("email");
+            email_button.innerHTML = "nagabhushans@iisc.ac.in";
+        }
+    </script>
+
+    Lab: SP 2.25 <br> <br>
+    I completed my B.E. in Electronics and Communications from P.E.S. Institute of Technology in 2016. After that, I
+    worked
+    as a Software Engineer in Cisco Systems India Pvt. Ltd. for 2 years (2016-18). In 2018, I joined IISc and I am
+    currently
+    pursuing Direct PhD in ECE Dept with <a href="https://ece.iisc.ac.in/~rajivs/#/" target="_blank">Dr. Rajiv Soundararajan</a>. My current interests are in the areas of Image and
+    Video
+    Signal Processing, Machine Learning and Computer Vision. <br>
 </div>
-<div>
-<img src="Nagabhushan_Photo.jpg" alt="Profile Photo" width="276" height="354">
-</div>
-
-<h3>PhD Scholar</h3>
-<address>
-    ECE Dept, Indian Institute of Science (IISc), Bengaluru <br>
-</address>
-
-Email: <button id="email" onclick="displayEmail()">Click here to reveal email id</button> <br>
-<script>
-    function displayEmail() {
-        var email_button = document.getElementById("email");
-        email_button.innerHTML = "nagabhushans@iisc.ac.in";
-    }
-</script>
-
-Lab: SP 2.25 <br> <br>
-I completed my B.E. in Electronics and Communications from P.E.S. Institute of Technology in 2016. After that, I worked
-as a Software Engineer in Cisco Systems India Pvt. Ltd. for 2 years (2016-18). In 2018, I joined IISc and I am currently
-pursuing Direct PhD in ECE Dept with Dr. Rajiv Soundararajan. My current interests are in the areas of Image and Video
-Signal Processing, Machine Learning and Computer Vision. <br>
-
-<a href="https://linkedin.com/in/nagabhushan-s-n-52391a68" target="_blank">Linked In</a> <br>
-<a href="https://github.com/NagabhushanSN95" target="_blank">GitHub</a> <br>
-<a href="https://stackexchange.com/users/4060371/nagabhushan-s-n?tab=accounts" target="_blank">Stack Exchange</a> <br>
-<a href="https://scholar.google.com/citations?hl=en&user=kFbFZHIAAAAJ" target="_blank">Google Scholar</a> <br>
-<a href="https://orcid.org/0000-0002-2266-759X" target="_blank">ORCID</a> <br>
-<a href="https://publons.com/researcher/3835716/nagabhushan-s-n/" target="_blank">Publons</a> <br>
-<a href="https://drive.google.com/file/d/155jbqmSSLoF7yhlFDoL6EvFJh20RMtQv/view" target="_blank">CV</a> <br>
-<a href="https://drive.google.com/file/d/14qSW7_JkwjBjbT132g5Cb5BN2_MvVei5/view" target="_blank">Resume</a> <br>
+<!-- Page content - End -->
 </body>
 </html>
