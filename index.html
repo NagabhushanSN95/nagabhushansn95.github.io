@@ -4,16 +4,19 @@ https://colorlib.com/wp/template/jackson/ -->
 <!-- W3 Schools / W3CSS / Nature Portfolio Template
 https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm
 https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_portfolio&stacked=h -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Nagabhushan S N - Homepage</title>
-    <link rel="stylesheet" href="navigation.css">
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="res/styles/navigation.css">
+    <link rel="stylesheet" href="home/res/styles/home.css">
+    <link rel="stylesheet" href="res/styles/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- For academic icons - https://jpswalsh.github.io/academicons/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="res/scripts/navigation.js"></script>
+    <script src="home/res/scripts/home.js"></script>
     <meta charset="UTF-8">
     <meta name="description" content="Homepage of Nagabhushan S N">
     <meta name="keywords" content="Nagabhushan, Webpage, Homepage, Personal">
@@ -32,13 +35,15 @@ https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_portfolio&
     </div>
     <div class="w3-bar-block">
         <a href="index.html" class="w3-bar-item w3-button">Home</a>
-        <a href="research/index.html" class="w3-bar-item w3-button">Research</a>
-        <a href="publications/index.html" class="w3-bar-item w3-button">Publications</a>
-        <a href="projects/index.html" class="w3-bar-item w3-button">Projects</a>
-        <a href="miscellaneous/index.html" class="w3-bar-item w3-button">Miscellaneous</a>
-        <a href="project_ideas/index.html" class="w3-bar-item w3-button">Project Ideas</a>
-        <a href="https://drive.google.com/file/d/155jbqmSSLoF7yhlFDoL6EvFJh20RMtQv/view" target="_blank" class="w3-bar-item w3-button">CV</a>
-        <a href="https://drive.google.com/file/d/14qSW7_JkwjBjbT132g5Cb5BN2_MvVei5/view" target="_blank" class="w3-bar-item w3-button">Resume</a>
+        <a href="research.html" class="w3-bar-item w3-button">Research</a>
+        <a href="publications.html" class="w3-bar-item w3-button">Publications</a>
+        <a href="projects.html" class="w3-bar-item w3-button">Projects</a>
+        <a href="miscellaneous.html" class="w3-bar-item w3-button">Miscellaneous</a>
+        <a href="project-ideas.html" class="w3-bar-item w3-button">Project Ideas</a>
+        <a href="https://drive.google.com/file/d/155jbqmSSLoF7yhlFDoL6EvFJh20RMtQv/view" target="_blank"
+           class="w3-bar-item w3-button">CV</a>
+        <a href="https://drive.google.com/file/d/14qSW7_JkwjBjbT132g5Cb5BN2_MvVei5/view" target="_blank"
+           class="w3-bar-item w3-button">Resume</a>
     </div>
     <div class="w3-panel w3-large">
         <a href="https://linkedin.com/in/nagabhushan-s-n-52391a68" target="_blank"><i
@@ -46,7 +51,8 @@ https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_portfolio&
         <a href="https://github.com/NagabhushanSN95" target="_blank"><i
                 class="fa fa-github w3-hover-opacity"></i></a> &ensp;
         <a href="https://stackexchange.com/users/4060371/nagabhushan-s-n?tab=accounts" target="_blank"><img
-                class="fa w3-hover-opacity" src="Icon_StackExchange.svg" alt="Stack Exchange" style="width: 25px"/></a>
+                class="fa w3-hover-opacity" src="res/images/Icon_StackExchange.svg" alt="Stack Exchange"
+                style="width: 25px"/></a>
         &ensp;
         <a href="https://scholar.google.com/citations?hl=en&user=kFbFZHIAAAAJ" target="_blank"><i
                 class="ai ai-google-scholar color-google-scholar w3-hover-opacity"></i></a> &ensp;
@@ -75,7 +81,7 @@ https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_portfolio&
     </div>
     <div class="w3-cell-row" style="width: 80%; margin-left: 10%; margin-right: 10%">
         <div class="w3-container w3-cell" style="width: 35%">
-            <img src="Nagabhushan_Photo.jpg" alt="Profile Photo" width="276" height="354">
+            <img src="home/res/images/Nagabhushan_Photo.jpg" alt="Profile Photo" width="276" height="354">
         </div>
 
         <div class="w3-container w3-cell" style="width: 65%">
@@ -99,22 +105,5 @@ https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_portfolio&
     </div>
 </div>
 <!-- Page content - End -->
-<script>
-    function displayEmail() {
-        var email_button = document.getElementById("email");
-        email_button.innerHTML = "nagabhushans@iisc.ac.in";
-    }
-
-    // Script to open and close sidebar
-    function w3_open() {
-        document.getElementById("nav_panel").style.display = "block";
-        document.getElementById("content_overlay").style.display = "block";
-    }
-
-    function w3_close() {
-        document.getElementById("nav_panel").style.display = "none";
-        document.getElementById("content_overlay").style.display = "none";
-    }
-</script>
 </body>
 </html>
