@@ -1,0 +1,9 @@
+/* Shree KRISHNAya Namaha */
+
+ol > li {
+    font-weight: bold;
+}
+
+ol > li > p {
+    font-weight: normal;
+}

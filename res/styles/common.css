@@ -6,3 +6,7 @@
     font-size: 300%;
 }
 
+p {
+    text-align: justify;
+    text-justify: inter-word;
+}
