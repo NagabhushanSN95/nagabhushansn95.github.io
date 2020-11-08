@@ -1,0 +1,25 @@
+/* Shree KRISHNAya Namaha */
+
+h5 {
+    color: #e91e63;
+    padding-top: 5px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2196F3;
+}
+
+a h5:hover {
+    color: #2196F3;
+}
+
+header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: -20px;
+}
