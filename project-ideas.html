@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <script src="res/scripts/navigation.js"></script>
 
-    <link rel="stylesheet" href="home/res/styles/project-ideas.css">
-    <script src="home/res/scripts/project-ideas.js"></script>
+    <link rel="stylesheet" href="project_ideas/res/styles/project-ideas.css">
+    <!--    <script src="project_ideas/res/scripts/project-ideas.js"></script>-->
 
     <meta charset="UTF-8">
     <meta name="description" content="Project Ideas Page">
@@ -79,6 +79,139 @@
     <div class="w3-container">
         <h1 class="page-title">Project Ideas</h1>
     </div>
+
+    <div class="w3-container" style="width: 80%; margin-left: 10%; padding-top: 50px">
+        <p>
+            The below are a list of ideas that I think are interesting. Some of them may be used for academic course
+            projects and some may be insufficient. You can build on such ideas. If you have any queries regarding these
+            ideas, please don't hesitate to contact me. If you do try these ideas, kindly update me, and I'll update
+            your findings here (with due credits, of course). If there is already an existing work on the ideas listed
+            below, kindly update me with that as well. I'll add a link to the relevant content.
+        </p>
+    </div>
+
+
+    <div class="w3-container" id="research-ideas" style="width: 80%; margin-left: 10%; padding-top: 30px">
+        <a href="project-ideas.html#research-ideas"><h3><u>Research Based Ideas</u></h3></a>
+
+        <div class="w3-container" id="2020-05-03">
+            <a href="project-ideas.html#2020-05-03"><h5>2020-05-03: Adversarial training and bias of deep features
+                towards local texture</h5></a>
+            <p>
+                Although deep networks have become extremely powerful for object recognition, they perform poorly in the
+                presence of adversarial attacks. In [1], the authors propose a method to train deep networks to be
+                robust to adversarial attacks by enforcing BPFC regularization. In [2], the authors show that deep
+                networks trained on ImageNet-1k database are biased towards local texture and hence when tested on edge
+                maps (where no local texture is present), their efficiency reduces.
+            </p>
+            <p>
+                Since adversarial attacks/examples mainly modify local properties of images, it would be interesting to
+                see if training a deep network to be robust to adversarial attacks would lead to lower bias towards
+                local texture. One way to verify this would be to test the performance of deep networks, which are
+                trained to be robust to adversarial attacks, on edge maps of images from ImageNet-1k database or any
+                other similar database.
+            </p>
+
+            [1] Sravanti Addepalli <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content_CVPR_2020/html/Addepalli_Towards_Achieving_Adversarial_Robustness_by_Enforcing_Feature_Consistency_Across_Bit_CVPR_2020_paper.html"
+               target="_blank">"Towards Achieving Adversarial Robustness by Enforcing Feature Consistency Across Bit
+                Planes"</a>, CVPR 2020. <br>
+            [2] Robert Geirhos <i>et al.</i>
+            <a href="https://openreview.net/forum?id=Bygh9j09KX&noteId=HJxSI4x527"
+               target="_blank">"ImageNet-trained CNNs are biased towards texture; increasing shape bias improves
+                accuracy and robustness"</a>, ICLR 2019.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2020-03-25">
+            <a href="project-ideas.html#2020-03-25"><h5>2020-03-25: Does ResNet features capture global shape?</h5></a>
+            <p>
+                In [1], the authors show that deep networks trained on ImageNet-1k database are biased towards local
+                texture than global shape. One of the experiments conducted in the paper is to get ResNet-50 [2]
+                predictions on edge map of an image. In the paper it is shown that accuracy of ResNet reduces on edge
+                maps of images.
+            </p>
+            <p>
+                It would be interesting to see if ResNet features (features tapped before the global pooling operation)
+                contain information about global shape. One way to check this is to freeze the weights of previous
+                layers of ResNet-50 and train only the last softmax layer on edge maps of images in ImageNet-1k
+                database. And then test this new model with edge maps of images.
+            </p>
+
+            [1] Robert Geirhos <i>et al.</i>
+            <a href="https://openreview.net/forum?id=Bygh9j09KX&noteId=HJxSI4x527"
+               target="_blank">"ImageNet-trained CNNs are biased towards texture; increasing shape bias improves
+                accuracy and robustness"</a>, ICLR 2019. <br>
+            [2] Kaiming He <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html"
+               target="_blank">"Deep Residual Learning for Image Recognition"</a>, CVPR 2016.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2019-11-19">
+            <a href="project-ideas.html#2019-11-19"><h5>2019-11-19: How well can MoCoGAN decompose video into Motion and
+                Content?</h5></a>
+            <p>
+                A video generative model has been proposed in [1], which decomposes video into content and motion.
+                Content latent vector remains same across all frames while motion latent vector is generated using a
+                recurrent network. A decoder then generates a frame using content and motion latent vectors.
+            </p>
+            <p>
+                It would be interesting to check how good the decomposition is working. To check this, one can change
+                the content latent vector mid-generation. Ideally the motion should remain the same while the person
+                should change.
+            </p>
+
+            [1] Sergey Tulyakov <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content_cvpr_2018/html/Tulyakov_MoCoGAN_Decomposing_Motion_CVPR_2018_paper.html"
+               target="_blank"> "MoCoGAN: Decomposing Motion and Content for Video Generation"</a>, CVPR 2018.
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2019-09-23">
+            <a href="project-ideas.html#2019-09-23"><h5>2019-09-23: Quantitative Evaluation of GANs</h5></a>
+            <p>
+                Quantitatively evaluating GAN models has been found challenging. Here, I propose a simple idea to
+                evaluate them based on how we would evaluate linear regression. Given a trained GAN model and an image
+                from test set, backpropagate the gradients (by keeping the generator weights fixed) to find the input
+                which can generate an image close to the test image. The error between the generated image and the test
+                image, averaged over all images in the test set, may be evaluated as a quantitative measure for
+                evaluating GANs. Various error/similarity measures like MSE, SSIM, VGG MSE or VGG cosine similarity can
+                be experimented with.
+            </p>
+            <!--            <hr class="w3-dark-gray" style="height: 1px; width: 100%">-->
+        </div>
+
+    </div>
+    <hr class="w3-dark-gray" style="height: 1px; width: 80%; margin-left: 10%">
+
+    <div class="w3-container" id="product-ideas" style="width: 80%; margin-left: 10%; padding-top: 30px">
+        <a href="project-ideas.html#product-ideas"><h3><u>Product Based Ideas</u></h3></a>
+
+        <div class="w3-container" id="2018-09-28">
+            <a href="project-ideas.html#2018-09-28"><h5>2018-09-28: Image Retrieval using Face Recognition</h5></a>
+            <p>
+                Build a face detection and recognition system, which can be applied on any new directory of images.
+                Build a GUI such that whenever a model encounters an unknown face, it requests the user to enter the
+                name of the person. The face recognition model should be able to dynamically learn to classify new
+                faces. The model builds an index of the people appearing in the photos and stores it. Later, when a
+                query for a particular person is issued, the model should retrieve all the images containing that
+                person.
+            </p>
+            <h6 style="margin-bottom: 0"><b>Update:</b></h6>
+            <p style="margin-top: 0">
+                This idea has already been implemented in Google Photos. Nonetheless, we may not be willing to upload
+                all our private photos to Google Photos. In that case, having an offline model, specifically trained on
+                people in our friend circle, may be useful. Although this model may not be able to perform as good as
+                Google Photos.
+            </p>
+            <!--            <hr class="w3-dark-gray" style="height: 1px; width: 100%">-->
+        </div>
+
+    </div>
+    <hr class="w3-dark-gray" style="height: 1px; width: 80%; margin-left: 10%">
 </div>
 <!-- Page content - End -->
 
