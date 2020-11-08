@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <script src="res/scripts/navigation.js"></script>
 
-    <link rel="stylesheet" href="home/res/styles/projects.css">
-    <script src="home/res/scripts/projects.js"></script>
+    <link rel="stylesheet" href="projects/res/styles/projects.css">
+    <!--    <script src="projects/res/scripts/projects.js"></script>-->
 
     <meta charset="UTF-8">
     <meta name="description" content="Projects Page">
@@ -79,6 +79,162 @@
     <div class="w3-container">
         <h1 class="page-title">Projects</h1>
     </div>
+
+    <!-- TODO: Add Contents (Academic Projects, Misc)    -->
+
+    <div class="w3-container" id="academic-projects" style="width: 80%; margin-left: 10%; padding-top: 50px">
+        <a href="projects.html#academic-projects"><h3><u>Academic Projects</u></h3></a>
+
+        <div class="w3-container" id="2019-aip-project">
+            <header>
+                <a href="projects.html#2019-aip-project"><h5>Face Detection using Aggregate Channel Features</h5></a>
+                <p>Apr 2019</p>
+            </header>
+            <p>
+                Aggregate Channel Features [1] are computed on image patches. An SVM is trained to classify the patches
+                as Face or Non-Face.
+            </p>
+
+            [1] Bin Yang <i>et al.</i>
+            <a href="https://ieeexplore.ieee.org/abstract/document/6996284" target="_blank">
+                "Aggregate channel features for multi-view face detection"</a>,
+            IEEE International Joint Conference on Biometrics.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2019-ml-project">
+            <header>
+                <a href="projects.html#2019-ml-project"><h5>Cryptography using Neural Networks using Adversarial
+                    Training</h5></a>
+                <p>Mar-Apr 2019</p>
+            </header>
+            <p>
+                A typical Cryptography setup consisting of Alice (transmitter), Bob (receiver) and Eve (Eavesdropper) is
+                used. Neural Networks are used for all 3 (Alice, Bob and Eve). A passphrase and a key is inputted to
+                Alice who outputs a ciphertext. This is passed to both Bob and Eve. Bob additionally has access to the
+                original key used by Alice. Eve acts as an adversary. Alice and Bob are trained to communicate securely
+                while Eve is trained to decrypt the ciphertext. When all 3 networks converge, a secure communication
+                channel is obtained [1]. This is a joint project with
+                <a href="https://www.linkedin.com/in/chandrasekhar-sriram-53990954/" target="_blank">
+                    <u>Chandrasekhar S</u></a> and
+                <a href="https://www.linkedin.com/in/sandesh-rao-826860b1/" target="_blank">
+                    <u>Sandesh Rao M</u></a>.
+            </p>
+
+            [1] Martin Abadi <i>et al.</i>
+            <a href="https://openreview.net/forum?id=S1HEBe_Jl&noteId=S1HEBe_Jl" target="_blank">
+                "Learning to Protect Communications with Adversarial Neural Cryptography"</a>,
+            arXiv e-prints arXiv:1610.06918.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2018-dip-project">
+            <header>
+                <a href="projects.html#2018-dip-project"><h5>VGG-19 Features as Full Reference - Image Quality
+                    Assessment (FR-IQA) metric</h5></a>
+                <p>Nov 2018</p>
+            </header>
+            <p>
+                A VGG19 network [1] pretrained on ImageNet-1K dataset is used. The features extracted (by an
+                intermediate layer) for both reference and test image are compared [2]. L2 difference between these 2
+                feature vectors is used as a FR-IQA metric. This is evaluated on LIVE IQA dataset [3].
+            </p>
+
+            [1] Karen Simonyan <i>et al.</i>
+            <a href="https://arxiv.org/abs/1409.1556" target="_blank">
+                "Very Deep Convolutional Networks for Large-Scale Image Recognition"</a>,
+            ICLR 2015. <br>
+            [2] Christian Ledig <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content_cvpr_2017/html/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.html"
+               target="_blank"> "Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network"</a>,
+            CVPR 2017. <br>
+            [3] Hamid Sheikh <i>et al.</i>
+            <a href="https://ieeexplore.ieee.org/abstract/document/1709988" target="_blank">
+                "A Statistical Evaluation of Recent Full Reference Image Quality Assessment Algorithms"</a>,
+            TIP 2006.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2016-be-project">
+            <header>
+                <a href="projects.html#2016-be-project"><h5>Intra-Campus Wi-Fi Calling System</h5></a>
+                <p>Jan-May 2016</p>
+            </header>
+            <p>
+                A system is developed to make voice calls and transmit messages within a campus using just Wi-Fi and no
+                internet. TCP is used to transmit packets. Voice Activity Detection to suppress non-voice packets is
+                used to decrease delay and increase performance. A server is developed to connect calls and an Android
+                App is developed for client-side. This is a joint project with
+                <a href="https://www.linkedin.com/in/aadityaravindran/" target="_blank"><u>Aaditya Ravindran</u></a> and
+                <a href="https://www.linkedin.com/in/lakshmitejasma/" target="_blank"><u>Lakshmi Tejas M</u></a>.
+            </p>
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2013-ld-project">
+            <header>
+                <a href="projects.html#2013-ld-project"><h5>Two digit Decimal Adder-Subtracter using Logic Gates</h5>
+                </a>
+                <p>Nov 2013</p>
+            </header>
+            <p>
+                Two numbers (2 digit in decimal number system) are inputted using switches. BCD encoders are used to
+                convert the numbers to BCD number system. For addition, BCD added is used. For subtraction, a BCD
+                subtracter is designed. After the operation, the values are converted back to Decimal system using BCD
+                decoders. The result is displayed on Seven-Segment displays.
+            </p>
+
+            <!--<hr class="w3-dark-gray" style="height: 1px; width: 100%">-->
+        </div>
+
+    </div>
+    <hr class="w3-dark-gray" style="height: 1px; width: 80%; margin-left: 10%">
+
+    <div class="w3-container" id="misc" style="width: 80%; margin-left: 10%; padding-top: 30px">
+        <a href="projects.html#misc"><h3><u>Miscellaneous</u></h3></a>
+
+        <div class="w3-container" id="2014-prakalpa">
+            <header>
+                <a href="projects.html#2014-prakalpa"><h5>Token Generator</h5></a>
+                <p>Sep-Oct 2014</p>
+            </header>
+            <p>During a science exhibition, some games were organized to attract the crowd. To play each game, a person
+                needs to submit a token. Instead of directly giving token, a Token Generator was designed based on Ring
+                Counter. A switch is used to stop the counter. The state in which the counter stops determines the
+                number of tokens given to the person.</p>
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2014-android">
+            <header>
+                <a href="projects.html#2014-android"><h5>Android Apps</h5></a>
+                <p>2014-2016</p>
+            </header>
+            <p>Developed a few android apps, among which some of them have been published on Google Play Store.</p>
+            <ol>
+                <li>
+                    <a href="https://play.google.com/store/apps/details?id=com.chaturvedi.financemanager&hl=en_US"
+                       target="_blank"><u>Finance Manager</u></a>:
+                    Helps managing the finances of individuals, with
+                    added features such as statistics, automatic entry of transactions from bank messages, export to PDF
+                    and backup/restore. This is developed in Java using Android Studio.
+                </li>
+                <li>
+                    One Touch Settings: Adds a button panel is notification drawer to control frequently used settings
+                </li>
+            </ol>
+            <p>Many more <a href="https://play.google.com/store/apps/developer?id=Nagabhushan+S+N&hl=en_IN"
+                            target="_blank"><u>here</u></a>.</p>
+            <!--<hr class="w3-dark-gray" style="height: 1px; width: 100%">-->
+        </div>
+
+    </div>
+    <hr class="w3-dark-gray" style="height: 1px; width: 80%; margin-left: 10%">
 </div>
 <!-- Page content - End -->
 
