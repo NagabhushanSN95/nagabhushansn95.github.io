@@ -2,14 +2,578 @@
 <html lang="en">
 <head>
     <title>VINE - Video Naturalness Evaluation</title>
+    <link rel="stylesheet" href="../../res/styles/w3.css">
+    <link rel="stylesheet" href="../../res/styles/common.css">
+    <link rel="stylesheet" href="../../res/styles/navigation.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="../../res/scripts/navigation.js"></script>
+
+    <link rel="stylesheet" href="vine/styles/vine.css">
+    <!--    <script src="vine/res/scripts/vine.js"></script>-->
+
     <meta charset="UTF-8">
-    <meta name="description" content="Homepage of Nagabhushan S N">
+    <meta name="description" content="VINE - Video Naturalness Evaluation">
     <meta name="keywords"
           content="VINE, Video, Naturalness, Naturalness Assessment, Naturalness Evaluation, Quality Assessment, QA">
     <meta name="author" content="Nagabhushan S N">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="1; url=https://sites.google.com/site/nagabhushansn95/publications/vine">
+    <!--    <meta http-equiv="refresh" content="1; url=https://sites.google.com/site/nagabhushansn95/publications/vine">-->
 </head>
 <body>
+
+<!-- Navigation Sidebar - Start-->
+<nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:260px" id="nav_panel">
+    <div class="w3-container">
+        <i onclick="w3_close()" class="w3-hide-large w3-right w3-xlarge w3-padding w3-hover-grey" title="close menu">
+            <i class="fas fa-times"></i>
+        </i>
+        <h4><b>Nagabhushan S N</b></h4>
+    </div>
+    <div class="w3-bar-block">
+        <a href="../../index.html" class="w3-bar-item w3-button">
+            <i class="fa fa-home" style="width: 25px"></i> Home
+        </a>
+        <a href="../../research.html" class="w3-bar-item w3-button">
+            <i class="fa fa-flask" style="width: 25px"></i> Research
+        </a>
+        <a href="../../publications.html" class="w3-bar-item w3-button">
+            <i class="fa fa-file-alt" style="width: 25px"></i> Publications
+        </a>
+        <a href="../../projects.html" class="w3-bar-item w3-button">
+            <i class="fa fa-project-diagram" style="width: 25px"></i> Projects
+        </a>
+        <a href="../../work-experience.html" class="w3-bar-item w3-button">
+            <i class="fa fa-briefcase" style="width: 25px"></i> Work Experience
+        </a>
+        <a href="../../miscellaneous.html" class="w3-bar-item w3-button">
+            <i class="fa fa-ellipsis-h" style="width: 25px"></i> Miscellaneous
+        </a>
+        <a href="../../project-ideas.html" class="w3-bar-item w3-button">
+            <i class="fas fa-lightbulb" style="width: 25px"></i> Project Ideas
+        </a>
+        <a href="../../res/documents/SNB_CV.pdf" target="_blank" class="w3-bar-item w3-button">CV</a>
+        <a href="../../res/documents/SNB_Resume.pdf" target="_blank" class="w3-bar-item w3-button">Resume</a>
+    </div>
+    <div class="w3-panel w3-large">
+        <a href="https://linkedin.com/in/nagabhushan-s-n-52391a68" target="_blank"><i
+                class="fab fa-linkedin color-linkedin w3-hover-opacity"></i></a> &ensp;
+        <a href="https://github.com/NagabhushanSN95" target="_blank"><i
+                class="fab fa-github w3-hover-opacity"></i></a> &ensp;
+        <a href="https://stackexchange.com/users/4060371/nagabhushan-s-n?tab=accounts" target="_blank"><img
+                class="fa w3-hover-opacity" src="../../res/images/Icon_StackExchange.svg" alt="Stack Exchange"
+                style="width: 25px"/></a> &ensp;
+        <a href="https://scholar.google.com/citations?hl=en&user=kFbFZHIAAAAJ" target="_blank"><i
+                class="ai ai-google-scholar color-google-scholar w3-hover-opacity"></i></a> &ensp;
+        <a href="https://orcid.org/0000-0002-2266-759X" target="_blank"><i
+                class="ai ai-orcid color-orcid w3-hover-opacity"></i></a> &ensp;
+        <a href="https://publons.com/researcher/3835716/nagabhushan-s-n/" target="_blank"><i
+                class="ai ai-publons color-publons w3-hover-opacity"></i></a> &ensp;
+    </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+     title="close side menu" id="content_overlay"></div>
+<!-- Navigation Sidebar - End-->
+
+<!-- Page content - Start -->
+<div class="w3-main" style="margin-left:260px">
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
+            class="fa fa-bars"></i></span>
+    <div class="w3-container" id="title-panel">
+        <h1 class="page-title">A Naturalness Evaluation Database for Video Prediction Models</h1>
+        <p style="text-align: center; font-size: large">
+            <a href="../../index.html" target="_blank"><u>Nagabhushan Somraj</u></a>,
+            <a href="https://sites.google.com/view/manojsuryakashi" target="_blank"><u>Manoj Surya Kashi</u></a>,
+            <a href="http://www.cns.iisc.ac.in/home/people/sp-arun" target="_blank"><u>Dr. S P Arun</u></a> and
+            <a href="https://ece.iisc.ac.in/~rajivs" target="_blank"><u>Dr. Rajiv Soundararajan</u></a>
+        </p>
+        <div class="w3-container" id="downloads" style="text-align: center">
+            <a href="https://arxiv.org/abs/2005.00356" target="_blank">
+                <button class="link-button">arXiv</button>
+            </a>
+            <a href="https://ece.iisc.ac.in/~nagabhushans/publications/2020/vine/IISc-VINE-2020.zip" target="_blank">
+                <button class="link-button">Database</button>
+            </a>
+            <a href="https://ece.iisc.ac.in/~nagabhushans/publications/2020/vine/Code-VINE.zip" target="_blank">
+                <button class="link-button">Code</button>
+            </a>
+        </div>
+    </div>
+<!--    <div class="w3-container w3-text-blue w3-center" style="width: 90%; margin-left: 5%; margin-bottom: 5%">-->
+<!--        <h4>This site is still under construction. For now, please visit-->
+<!--            <a href="https://sites.google.com/site/nagabhushansn95/publications/vine"><u>here</u></a></h4>-->
+<!--    </div>-->
+
+    <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="database">
+            <a href="#database"><h2><u>IISc VINE Database</u></h2></a>
+            <p>
+                By applying various Video Prediction models on videos from various datasets, we generate a large
+                collection of
+                predicted videos. We select a representative set of 300 videos from these to form the Indian Institute
+                of Science - VIdeo Naturalness Evaluation (IISc VINE) Database. In the following videos, we show example
+                distortions observed in our Database. These videos correspond to the videos shown in the paper.
+            </p>
+
+            <div class="w3-container" id="different-distortions">
+                <a href="#different-distortions"><h3>Different Distortions</h3></a>
+                <img src="vine/images/DifferentDistortions.png" alt="Sample videos for different distortions observed"
+                     id="different-distortions-image">
+
+                <div class="vine-videos4">
+                    <figure style="width: 27%">
+                        <video width="320px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KITTI_020_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Blur</figcaption>
+                    </figure>
+                    <figure style="width: 27%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_021_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Shape Distortion</figcaption>
+                    </figure>
+                    <figure style="width: 22%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/BAIR_035_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 22%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KTH_029_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Color Change</figcaption>
+                    </figure>
+                </div>
+
+                <div class="vine-videos2">
+                    <figure style="width: 48%">
+                        <video width="320px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KITTI_020_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Blur</figcaption>
+                    </figure>
+                    <figure style="width: 48%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_021_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Shape Distortion</figcaption>
+                    </figure>
+                    <figure style="width: 48%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/BAIR_035_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 48%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KTH_029_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Color Change</figcaption>
+                    </figure>
+                </div>
+
+                <div class="vine-videos1">
+                    <figure style="width: 100%">
+                        <video width="320px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KITTI_020_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Blur</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_021_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Shape Distortion</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/BAIR_035_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KTH_029_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Color Change</figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="w3-container" id="different-shape-distortions">
+                <a href="#different-distortions"><h3>Different Shape Distortions</h3></a>
+                <img src="vine/images/DifferentShapeDistortions.png"
+                     alt="Sample videos for different shape distortions observed"
+                     id="different-shape-distortions-image"> <br>
+
+                <div class="vine-videos4">
+                    <figure style="width: 26%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_028_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation</figcaption>
+                    </figure>
+                    <figure style="width: 21%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KTH_020_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Splitting</figcaption>
+                    </figure>
+                    <figure style="width: 26%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_008_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 26%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_015_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Elongation</figcaption>
+                    </figure>
+                </div>
+
+                <div class="vine-videos2">
+                    <figure style="width: 49%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_028_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation</figcaption>
+                    </figure>
+                    <figure style="width: 49%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KTH_020_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Splitting</figcaption>
+                    </figure>
+                    <figure style="width: 49%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_008_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 49%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_015_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Elongation</figcaption>
+                    </figure>
+                </div>
+
+                <div class="vine-videos1">
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_028_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="256px" height="256px" autoplay loop muted controls>
+                            <source src="vine/videos/KTH_020_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Splitting</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_008_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_015_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Elongation</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="model">
+            <a href="#model"><h2><u>Video Naturalness Evaluation - Our Proposed Method</u></h2></a>
+            <p>
+                For a given video, we compute deep features of pretrained networks such as VGG-19, ResNet-50 and
+                Inception-v3. We further process them to get 2 sets of features. We use a shallow feed forward neural
+                network to learn naturalness score from the computed features (Figure A).
+            </p>
+
+            <ol>
+                <li>
+                    Motion-compensated Cosine Similarity (MCS) features: We compute cosine similarity between deep
+                    features of last context frame and motion-compensated deep features of predicted frames (Figure B).
+                </li>
+                <li>
+                    Rescaled Frame Difference (RFD) features: We compute difference of successive frames and rescale the
+                    diff frames in the range [0,255]. We then compute deep features of them and average spatially
+                    (Figure C).
+                </li>
+            </ol>
+
+            <div class="w3-container" id="model-block-diagram">
+                <a href="#model-block-diagram"><h3>Model Architecture</h3></a>
+                <img src="vine/images/Model_BlockDiagrams.png" alt="Model Block Diagram"
+                     id="model-block-diagram-image">
+            </div>
+
+            <div class="w3-container" id="rfd-illustration" style="margin-top: 25px">
+                <a href="#rfd-illustration"><h3>Illustration of Rescaled Frame Differences</h3></a>
+                <img src="vine/images/FrameDiffExamples.png" alt="Examples of RFD"
+                     id="rfd-illustration-image">
+
+                <div class="vine-videos4">
+                    <figure style="width: 24.75%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_019_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 24.75%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_019_Eval_RFD.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance RFD</figcaption>
+                    </figure>
+                    <figure style="width: 24.75%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_040_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation</figcaption>
+                    </figure>
+                    <figure style="width: 24.75%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_040_Eval_RFD.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation RFD</figcaption>
+                    </figure>
+                </div>
+
+                <div class="vine-videos2">
+                    <figure style="width: 49%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_019_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 49%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_019_Eval_RFD.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance RFD</figcaption>
+                    </figure>
+                    <figure style="width: 49%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_040_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation</figcaption>
+                    </figure>
+                    <figure style="width: 49%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_040_Eval_RFD.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation RFD</figcaption>
+                    </figure>
+                </div>
+
+                <div class="vine-videos1">
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_019_Eval.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_019_Eval_RFD.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Partial Disappearance RFD</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_040_Eval.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation</figcaption>
+                    </figure>
+                    <figure style="width: 100%">
+                        <video width="320px" height="240px" autoplay loop muted controls>
+                            <source src="vine/videos/UCF_040_Eval_RFD.mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption class="caption">Deformation RFD</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="fr-failure">
+            <a href="#model"><h2><u>Shortcomings of Full Reference Measures</u></h2></a>
+
+            <img src="vine/images/FailureOfFullReference.png" alt="Examples for shortcomings of FR measures"
+                 id="fr-failure-image">
+
+            <div class="vine-videos4">
+                <figure style="width: 24%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_015_GT.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Ground Truth 01</figcaption>
+                </figure>
+                <figure style="width: 24%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_015_Eval.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Predicted Video 01</figcaption>
+                </figure>
+                <figure style="width: 24%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_021_GT.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Ground Truth 02</figcaption>
+                </figure>
+                <figure style="width: 24%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_021_Eval.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Predicted Video 02</figcaption>
+                </figure>
+            </div>
+
+            <div class="vine-videos2">
+                <figure style="width: 49%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_015_GT.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Ground Truth 01</figcaption>
+                </figure>
+                <figure style="width: 49%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_015_Eval.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Predicted Video 01</figcaption>
+                </figure>
+                <figure style="width: 49%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_021_GT.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Ground Truth 02</figcaption>
+                </figure>
+                <figure style="width: 49%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_021_Eval.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Predicted Video 02</figcaption>
+                </figure>
+            </div>
+
+            <div class="vine-videos1">
+                <figure style="width: 100%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_015_GT.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Ground Truth 01</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_015_Eval.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Predicted Video 01</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_021_GT.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Ground Truth 02</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video width="256px" height="256px" autoplay loop muted controls>
+                        <source src="vine/videos/BAIR_021_Eval.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Predicted Video 02</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="citation">
+            <a href="#model-block-diagram"><h2><u>Citation</u></h2></a>
+            If you use our work, please cite our paper:
+            <div class="citation" style="margin-bottom: 25px">
+                Nagabhushan Somraj, Manoj Surya Kashi, S P Arun, Rajiv Soundararajan, "A Naturalness Evaluation Database
+                for Video Prediction Models", <i>arXiv e-prints</i>, p.arXiv:2005.00356
+            </div>
+
+            <u>Bibtex</u>:
+            <div class="citation" style="margin-bottom: 25px">
+                @article{somraj2020vine, <br>
+                &ensp; &ensp; title = {A Naturalness Evaluation Database for Video Prediction Models}, <br>
+                &ensp; &ensp; author = {Somraj, Nagabhushan and Kashi, Manoj Surya and Arun, S. P. and Soundararajan, Rajiv}, <br>
+                &ensp; &ensp; journal = {arXiv e-prints}, <br>
+                &ensp; &ensp; eid = {arXiv:2005.00356}, <br>
+                &ensp; &ensp; pages = {arXiv:2005.00356}, <br>
+                &ensp; &ensp; archivePrefix = {arXiv}, <br>
+                &ensp; &ensp; eprint = {2005.00356}, <br>
+                &ensp; &ensp; year = {2020} <br>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content - End -->
+
 </body>
 </html>
