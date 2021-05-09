@@ -66,6 +66,12 @@ video {
     height: auto;
 }
 
+#adversarial-shape-distortions-image {
+    width: 640px;
+    max-width: 100%;
+    height: auto;
+}
+
 #model-block-diagram-image {
     max-width: 100%;
     width: 750px;
