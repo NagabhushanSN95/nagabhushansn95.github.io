@@ -103,55 +103,55 @@ video {
 
 @media (min-width: 1760px) {
     /* W3-Large screen. Put all 4 videos in a single row*/
-    .vine-videos2 {
+    .pvqa-videos2 {
         display: none !important;
     }
 
-    .vine-videos1 {
+    .pvqa-videos1 {
         display: none !important;
     }
 }
 
 @media (min-width: 1150px) and (max-width: 1760px) {
     /* W3-Large screen. But not enough space for 4 videos. Put 2 videos in a single row */
-    .vine-videos4 {
+    .pvqa-videos4 {
         display: none !important;
     }
 
-    .vine-videos1 {
+    .pvqa-videos1 {
         display: none !important;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1150px) {
     /* W3-Large screen, but not enough space for even 2 videos, due to navigation bar. Put 1 videos in a row */
-    .vine-videos4 {
+    .pvqa-videos4 {
         display: none !important;
     }
 
-    .vine-videos2 {
+    .pvqa-videos2 {
         display: none !important;
     }
 }
 
 @media (min-width: 860px) and (max-width: 992px) {
     /* W3-Medium screen. Put 2 videos in a single row */
-    .vine-videos4 {
+    .pvqa-videos4 {
         display: none !important;
     }
 
-    .vine-videos1 {
+    .pvqa-videos1 {
         display: none !important;
     }
 }
 
 @media (max-width: 860px) {
     /* W3-Medium screen, but not enough space {or} W3-Small screen. Put 1 videos in a row */
-    .vine-videos2 {
+    .pvqa-videos2 {
         display: none !important;
     }
 
-    .vine-videos4 {
+    .pvqa-videos4 {
         display: none !important;
     }
 }
