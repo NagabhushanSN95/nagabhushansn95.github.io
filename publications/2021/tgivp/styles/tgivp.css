@@ -1,0 +1,69 @@
+/* Shree KRISHNAya Namaha */
+
+h2, h3 {
+    color: #e91e63;
+    /*padding-top: 5px;*/
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2196F3;
+}
+
+a h2:hover, h3:hover {
+    color: #2196F3;
+}
+
+figure {
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+video {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.link-button {
+    background-color: #ff572222;
+    border-radius: 5px;
+}
+
+.link-button:hover {
+    background-color: #ffffff22;
+}
+
+.caption {
+    text-align: center;
+    /*display: block;*/
+}
+
+.citation {
+    background-color: #f1f1f1;
+    font-family: monospace;
+    padding: 10px 25px;
+}
+
+#title-panel {
+    background-color: #ff572244;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+@media (min-width: 900px) {
+    .link-button {
+        width: 200px;
+        margin: 10px 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .link-button {
+        width: 100%;
+    }
+}
