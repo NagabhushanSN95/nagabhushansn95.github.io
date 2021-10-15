@@ -46,27 +46,79 @@
     </div>
 
     <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="summary">
+            <a href="#summary"><h2><u>Temporal view synthesis for frame rate upsampling</u></h2></a>
+            Alternate frames are graphically rendered and the intermediate frames are predicted using temporal view synthesis.
+            <img src="ivp/images/SummaryFigure.png" alt="Summary Figure" id="fig-summary">
+        </div>
+        <div class="w3-container" id="video-comparison">
+            <a href="#video-comparison"><h2><u>Sample comparison videos with other competing methods</u></h2></a>
 
-        <div class="w3-container" id="model">
-            <a href="#model"><h2><u>Infilling Vector Prediction - Our Proposed Method</u></h2></a>
-            <p>
-<!--                For a given video, we compute deep features of pretrained networks such as VGG-19, ResNet-50 and-->
-<!--                Inception-v3. We further process them to get 2 sets of features. We use a shallow feed forward neural-->
-<!--                network to learn quality score from the computed features (Figure A).-->
-            </p>
+            <div class="two-video-row">
+                <figure style="width: 60%">
+                    <video width="905px" height="315" autoplay loop muted controls>
+                        <source src="ivp/videos/Ours_EdgeConnect_Comparison.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Comparison with EdgeConnect</figcaption>
+                </figure>
+                <figure style="width: 36%">
+                    <video width="477px" height="301px" autoplay loop muted controls>
+                        <source src="ivp/videos/Ours_SynSin_Comparison.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Comparison with SynSin</figcaption>
+                </figure>
+            </div>
+
+            <div class="one-video-row">
+                <figure style="width: 100%">
+                    <video width="3620px" height="1260px" autoplay loop muted controls>
+                        <source src="ivp/videos/Ours_EdgeConnect_Comparison.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Blur</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video width="1908px" height="1204px" autoplay loop muted controls>
+                        <source src="ivp/videos/Ours_SynSin_Comparison.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Shape Distortion</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="abstract">
+            <a href="#abstract"><h2><u>Abstract</u></h2></a>
+            We consider the problem of temporal view synthesis, where the goal is to predict a future video frame from the past frames using knowledge of the depth and relative camera motion.
+            In contrast to revealing the disoccluded regions through intensity based infilling, we study the idea of an infilling vector to infill by pointing to a non-disoccluded region in the synthesized view.
+            To exploit the structure of disocclusions created by camera motion during their infilling, we rely on two important cues, temporal correlation of infilling directions and depth.
+            We design a learning framework to predict the infilling vector by computing a temporal prior that reflects past infilling directions and a normalized depth map as input to the network.
+            We conduct extensive experiments on a large scale dataset we build for evaluating temporal view synthesis in addition to the SceneNet RGB-D dataset.
+            Our experiments demonstrate that our infilling vector prediction approach achieves superior quantitative and qualitative infilling performance compared to other approaches in literature.
+        </div>
+
+        <div class="w3-container" id="ivp-idea">
+            <a href="#ivp-idea"><h2><u>Infilling Vectors - Idea</u></h2></a>
+            Disocclusions can be infilled by copying intensities from the neighborhood background regions, pointed by the predicted infilling vectors.
+            <img src="ivp/images/InfillingVectorIdea.png" alt="Summary Figure" id="fig-ivp-idea">
         </div>
 
         <hr class="w3-dark-gray" style="height: 1px; width: 100%">
 
         <div class="w3-container" id="database">
             <a href="#database"><h2><u>IISc VEED Database</u></h2></a>
-            <p>
-<!--                By applying various Video Prediction models on videos from various datasets, we generate a large-->
-<!--                collection of-->
-<!--                predicted videos. We select a representative set of 300 videos from these to form the Indian Institute-->
-<!--                of Science - Predicted Video Quality Assessment (IISc PVQA) Database. In the following videos, we show example-->
-<!--                distortions observed in our Database. These videos correspond to the videos shown in the paper.-->
-            </p>
+            <img src="ivp/images/DatabaseSamples.png" alt="Samples from IISc VEED Database" id="fig-veed-samples">
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="comparisons">
+            <a href="#comparisons"><h2><u>Qualitative Comparisons</u></h2></a>
+            <img src="ivp/images/QualitativeComparisons.png" alt="Qualitative Comparisons" id="fig-qualitative-comparisons">
         </div>
 
         <hr class="w3-dark-gray" style="height: 1px; width: 100%">

@@ -30,7 +30,7 @@ video {
 }
 
 .link-button {
-    background-color: #ff572222;
+    background-color: rgba(143, 141, 141, 0.13);
     border-radius: 5px;
 }
 
@@ -50,7 +50,7 @@ video {
 }
 
 #title-panel {
-    background-color: #ff572244;
+    background-color: rgba(31, 31, 31, 0.27);
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -65,5 +65,39 @@ video {
 @media (max-width: 900px) {
     .link-button {
         width: 100%;
+    }
+}
+
+#fig-summary {
+    max-width: 80%;
+    height: auto;
+}
+
+#fig-ivp-idea {
+    max-width: 40%;
+    height: auto;
+}
+
+#fig-veed-samples {
+    max-width: 100%;
+    height: auto;
+}
+
+#fig-qualitative-comparisons {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (min-width: 1150px) {
+    /* W3-Large screen. Put all 2 videos in a single row*/
+    .one-video-row {
+        display: none !important;
+    }
+}
+
+@media (max-width: 860px) {
+    /* W3-Medium screen, but not enough space {or} W3-Small screen. Put 1 videos in a row */
+    .two-video-row {
+        display: none !important;
     }
 }
