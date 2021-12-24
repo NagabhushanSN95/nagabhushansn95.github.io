@@ -64,7 +64,9 @@ video {
 
 @media (max-width: 900px) {
     .link-button {
-        width: 100%;
+        width: 40%;
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
 }
 
