@@ -76,6 +76,9 @@ video {
     max-width: 100%;
     width: 750px;
     height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #rfd-illustration-image {
@@ -97,7 +100,9 @@ video {
 
 @media (max-width: 900px) {
     .link-button {
-        width: 100%;
+        width: 40%;
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
 }
 
