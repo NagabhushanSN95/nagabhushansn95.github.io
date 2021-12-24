@@ -69,34 +69,38 @@ video {
 }
 
 #fig-summary {
-    max-width: 80%;
+    width: 100%;
+    max-width: 3508px;
     height: auto;
 }
 
 #fig-ivp-idea {
-    max-width: 40%;
+    width: 100%;
+    max-width: 900px;
     height: auto;
 }
 
 #fig-veed-samples {
-    max-width: 100%;
+    width: 100%;
+    max-width: 8192px;
     height: auto;
 }
 
 #fig-qualitative-comparisons {
-    max-width: 100%;
+    width: 100%;
+    max-width: 2170px;
     height: auto;
 }
 
-@media (min-width: 1150px) {
-    /* W3-Large screen. Put all 2 videos in a single row*/
+@media (min-width: 1720px) {
+    /* Large screen. Put all 2 videos in a single row*/
     .one-video-row {
         display: none !important;
     }
 }
 
-@media (max-width: 860px) {
-    /* W3-Medium screen, but not enough space {or} W3-Small screen. Put 1 videos in a row */
+@media (max-width: 1720px) {
+    /* Can't fit both videos in a single row. Put 1 video in each row */
     .two-video-row {
         display: none !important;
     }
