@@ -34,7 +34,7 @@
             Indian Institute of Science
         </p>
         <div class="w3-container" id="downloads" style="text-align: center">
-            <a href="" target="_blank">
+            <a href="https://openaccess.thecvf.com/content/WACV2022/html/Kanchana_Revealing_Disocclusions_in_Temporal_View_Synthesis_Through_Infilling_Vector_Prediction_WACV_2022_paper.html" target="_blank">
                 <button class="link-button" title="View paper on WACV">WACV 2022</button>
             </a>
             <a href="https://arxiv.org/abs/2110.08805" target="_blank">
@@ -46,14 +46,17 @@
             <a href="https://github.com/NagabhushanSN95/IVP" target="_blank">
                 <button class="link-button" title="View Code on GitHub">Code</button>
             </a>
+            <a href="https://video.vast.uccs.edu/WACV22/WACV/1188-wacv-poster.pdf" target="_blank">
+                <button class="link-button" title="View WACV 2022 Poster">Poster</button>
+            </a>
         </div>
     </div>
 
     <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
-        <div class="w3-container" id="summary">
-            <a href="#summary"><h2><u>Temporal view synthesis for frame rate upsampling</u></h2></a>
-            Alternate frames are graphically rendered and the intermediate frames are predicted using temporal view synthesis.
-            <img src="ivp/images/SummaryFigure.png" alt="Summary Figure" id="fig-summary">
+        <div class="w3-container" id="video-presentation">
+            <iframe width="720" height="405"
+                    src="https://www.youtube.com/embed/7IYXKOqP2TA">
+            </iframe>
         </div>
         <div class="w3-container" id="video-comparison">
             <a href="#video-comparison"><h2><u>Sample comparison videos with other competing methods</u></h2></a>
@@ -103,6 +106,12 @@
             We design a learning framework to predict the infilling vector by computing a temporal prior that reflects past infilling directions and a normalized depth map as input to the network.
             We conduct extensive experiments on a large scale dataset we build for evaluating temporal view synthesis in addition to the SceneNet RGB-D dataset.
             Our experiments demonstrate that our infilling vector prediction approach achieves superior quantitative and qualitative infilling performance compared to other approaches in literature.
+        </div>
+
+        <div class="w3-container" id="summary">
+            <a href="#summary"><h2><u>Temporal view synthesis for frame rate upsampling</u></h2></a>
+            Alternate frames are graphically rendered and the intermediate frames are predicted using temporal view synthesis.
+            <img src="ivp/images/SummaryFigure.png" alt="Summary Figure" id="fig-summary">
         </div>
 
         <div class="w3-container" id="ivp-idea">
