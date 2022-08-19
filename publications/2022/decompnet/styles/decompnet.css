@@ -109,3 +109,36 @@ video {
     max-width: 2036px;
     height: auto;
 }
+
+@media (min-width: 1700px) {
+    /* W3-Large screen. Put all 4 videos in a single row*/
+    .two-video-row {
+        display: none !important;
+    }
+
+    .one-video-row {
+        display: none !important;
+    }
+}
+
+@media (min-width: 860px) and (max-width: 1700px) {
+    /* W3-Large screen. But not enough space for 4 videos. Put 2 videos in a single row */
+    .four-video-row {
+        display: none !important;
+    }
+
+    .one-video-row {
+        display: none !important;
+    }
+}
+
+@media (max-width: 860px) {
+    /* W3-Medium screen, but not enough space {or} W3-Small screen. Put 1 videos in a row */
+    .two-video-row {
+        display: none !important;
+    }
+
+    .four-video-row {
+        display: none !important;
+    }
+}
