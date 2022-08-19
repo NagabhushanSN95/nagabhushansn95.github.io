@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <script src="../../res/scripts/navigation.js"></script>
 
-    <link rel="stylesheet" href="../2021/ivp/styles/ivp.css">
+    <link rel="stylesheet" href="decompnet/styles/decompnet.css">
 
     <meta charset="UTF-8">
     <meta name="description" content="Temporal View Synthesis of Dynamic Scenes">
@@ -39,7 +39,7 @@
             <a href="" target="_blank">
                 <button class="link-button" title="View paper on arXiv">arXiv</button>
             </a>
-            <a href="" target="_blank">
+            <a href="#database-download">
                 <button class="link-button" title="Download Database">Database</button>
             </a>
             <a href="https://github.com/NagabhushanSN95/DeCOMPnet" target="_blank">
@@ -52,42 +52,176 @@
     </div>
 
     <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="list-of-contents">
+            <a href="#list-of-contents"><h2><u>Contents</u></h2></a>
+            <ul>
+                <li><a href="#video-presentations">Video Presentations</a></li>
+                <li><a href="#video-comparison">Video Comparisons</a></li>
+                <li><a href="#decompnet-model">DeCOMPnet Model</a></li>
+                <li><a href="#database">IISc VEED-Dynamic Dataset</a></li>
+                <li><a href="#qualitative-results">Qualitative Results</a></li>
+                <li><a href="#citation">Citation</a></li>
+            </ul>
+        </div>
+
         <div class="w3-container" id="video-presentations">
             <a href="#video-presentations"><h2><u>Technical Talks on this work</u></h2></a>
-<!--            <div class="w3-container" id="video-presentation">-->
-<!--                <iframe width="720" height="405"-->
-<!--                        src="https://www.youtube.com/embed/7IYXKOqP2TA">-->
-<!--                </iframe>-->
-<!--            </div>-->
             <ul>
+<!--                <li> ISMAR 2022:-->
+<!--                    <div class="w3-container" id="ismar-video">-->
+<!--                        <iframe width="720" height="405"-->
+<!--                                src="https://www.youtube.com/embed/7IYXKOqP2TA">-->
+<!--                        </iframe>-->
+<!--                    </div>-->
+<!--                </li>-->
                 <li>01-Feb-2022: In <a href="../../miscellaneous.html#iisc-srss-2022-decompnet" target="_blank">IISc Student Research Seminar Series, 2022</a>.
                     [<a href="https://www.youtube.com/watch?v=Zz1cF76qdDw" target="_blank">Video</a>]</li>
             </ul>
         </div>
+        <div class="w3-container" id="video-comparison">
+            <a href="#video-comparison"><h2><u>Sample comparison videos with other competing methods</u></h2></a>
+
+            <h4>Play the videos in the fullscreen mode for the best view</h4>
+
+            <div>
+                <figure style="width: 100%">
+                    <video width="1380px" height="282px" muted controls>
+                        <source src="decompnet/videos/city02_seq00_singleframe.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">City02 - Seq00 - Single Frame Prediction; Video at 30fps</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video width="1230px" height="282px" muted controls>
+                        <source src="decompnet/videos/city02_seq00_multiframe.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">City02 - Seq00 - Multi Frame Prediction; Video at 30fps</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video width="1040px" height="176px" muted controls>
+                        <source src="decompnet/videos/shaman3_albedo_multiframe.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Shaman3 - Albedo - Multi Frame Prediction; Video at 1fps</figcaption>
+                </figure>
+            </div>
+        </div>
 
         <hr class="w3-dark-gray" style="height: 1px; width: 100%">
 
-        <h3>More details coming soon</h3>
+        <div class="w3-container" id="abstract">
+            <a href="#abstract"><h2><u>Abstract</u></h2></a>
+            The challenge of graphically rendering high frame-rate videos on low compute devices can be addressed through periodic prediction of future frames to enhance the user experience in virtual reality applications.
+            This is studied through the problem of temporal view synthesis (TVS), where the goal is to predict the next frames of a video given the previous frames and the head poses of the previous and the next frames.
+            In this work, we consider the TVS of dynamic scenes in which both the user and objects are moving.
+            We design a framework that decouples the motion into user and object motion to effectively use the available user motion while predicting the next frames.
+            We predict the motion of objects by isolating and estimating the 3D object motion in the past frames and then extrapolating it.
+            We employ multi-plane images (MPI) as a 3D representation of the scenes and model the object motion as the 3D displacement between the corresponding points in the MPI representation.
+            In order to handle the sparsity in MPIs while estimating the motion, we incorporate partial convolutions and masked correlation layers to estimate corresponding points.
+            The predicted object motion is then integrated with the given user or camera motion to generate the next frame.
+            Using a disocclusion infilling module, we synthesize the regions uncovered due to the camera and object motion.
+            We develop a new synthetic dataset for TVS of dynamic scenes consisting of 800 videos at full HD resolution.
+            We show through experiments on our dataset and the MPI Sintel dataset that our model outperforms all the competing methods in the literature.
+        </div>
 
-<!--        <div class="w3-container" id="citation">-->
-<!--            <a href="#citation"><h2><u>Citation</u></h2></a>-->
-<!--            If you use our work, please cite our paper:-->
-<!--            <div class="citation" style="margin-bottom: 25px">-->
-<!--                Vijayalakshmi Kanchana, Nagabhushan Somraj, Suraj Yadwad and Rajiv Soundararajan, "Revealing Disocclusions in Temporal View Synthesis through Infilling Vector Prediction", Proceedings of the <i>IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)</i> 2022.-->
-<!--            </div>-->
+        <div class="w3-container" id="summary">
+            <a href="#summary"><h2><u>Temporal view synthesis for frame rate upsampling of dynamic videos</u></h2></a>
+            Alternate frames are graphically rendered and the intermediate frames are predicted using temporal view synthesis.
+            <img src="decompnet/images/FrameRateUpsampling.png" alt="Summary Figure" id="fig-summary" style="width: 100%"/>
+        </div>
 
-<!--            <u>Bibtex</u>:-->
-<!--            <div class="citation" style="margin-bottom: 25px">-->
-<!--                @article{kanchana2022ivp, <br>-->
-<!--                &ensp; &ensp; title = {Revealing Disocclusions in Temporal View Synthesis through Infilling Vector Prediction}, <br>-->
-<!--                &ensp; &ensp; author = {Kanchana, Vijayalakshmi and Somraj, Nagabhushan and Yadwad, Suraj and Soundararajan, Rajiv}, <br>-->
-<!--                &ensp; &ensp; booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, <br>-->
-<!--                &ensp; &ensp; pages = {3541-3550}, <br>-->
-<!--                &ensp; &ensp; month = {January}, <br>-->
-<!--                &ensp; &ensp; year = {2022} <br>-->
-<!--                }-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class="w3-container" id="decompnet-model">
+            <a href="#decompnet-model"><h2><u>DeCOMPnet - Model Block Diagram</u></h2></a>
+
+            <img src="decompnet/images/VPTU_Architecture.png" alt="Model Block Diagram" id="fig-decompnet-block-diagram" style="width: 100%"/>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="database">
+            <a href="#database"><h2><u>IISc VEED-Dynamic Database</u></h2></a>
+            The database consists of 200 diverse indoor and outdoor scenes (see samples below).
+            We use <a href="https://blender.org" target="_blank">Blender</a> to render the videos.
+            We obtain the blend files for the scenes mainly from <a href="https://www.blendswap.com" target="_blank">blendswap</a> and <a href="https://www.turbosquid.com" target="_blank">turbosquid</a>.
+            4 different camera trajectories are added to each scene and thus we have a total of 800 videos.
+            Motion is added to pre-existing objects in the scene or new objects are added and animated.
+            The videos are rendered at full HD resolution (1920 x 1080) and at 30fps and contain 12 frames each. <br/>
+
+            <div class="w3-container" id="database-samples">
+                <a href="#database-samples"><h3>Samples</h3></a>
+                <figure style="width: 100%">
+                    <video width="1380px" height="282px" muted controls>
+                        <source src="decompnet/videos/DatabaseSamples.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">Sample videos from the database; Videos at 2fps</figcaption>
+                </figure>
+            </div>
+
+            <div class="w3-container" id="database-download">
+                <a href="#database-download"><h3>Download</h3></a>
+                Link: <a href="" target="_blank"><u>Google drive</u></a> <br/>
+                The above link contains the following data:
+                <ol>
+                    <li>Sample data</li>
+                    <li>Train and Test sets with RGB-D data, camera intrinsics and extrinsics.
+                        This data is password protected.
+                        Please fill <u><a href="" target="_blank">this form</a></u> to get the password.</li>
+                    <li>Links to the original blend files.</li>
+                    <li>License</li>
+                </ol>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="qualitative-results">
+            <a href="#qualitative-results"><h2><u>Qualitative Results</u></h2></a>
+
+            <div class="w3-container" id="frame-life-cycle">
+                <a href="#frame-life-cycle"><h3><u>Visualization of outputs of various stages of our framework</u></h3></a>
+                <img src="decompnet/images/FrameLifecycle.png" alt="Frame Life Cycle" id="fig-frame-life-cycle"/>
+            </div>
+
+            <div class="w3-container" id="qualitative-comparisons-veedd">
+                <a href="#qualitative-comparisons-veedd"><h3><u>Qualitative Comparisons on IISc VEED-Dynamic Database</u></h3></a>
+                <img src="decompnet/images/QualitativeComparisons_OursBlender.jpg" alt="Qualitative Comparisons" id="fig-qualitative-comparisons-veedd"/>
+            </div>
+
+            <div class="w3-container" id="qualitative-comparisons-sintel">
+                <a href="#qualitative-comparisons-sintel"><h3><u>Qualitative Comparisons on MPI-Sintel Database</u></h3></a>
+                <img src="decompnet/images/QualitativeComparisons_Sintel.jpg" alt="Qualitative Comparisons" id="fig-qualitative-comparisons-sintel"/>
+            </div>
+
+            <div class="w3-container" id="qualitative-comparisons-2d-vs-3d">
+                <a href="#qualitative-comparisons-2d-vs-3d"><h3><u>Flow estimation with and without MPI</u></h3></a>
+                <img src="decompnet/images/Flow2dVs3d.png" alt="Effect of MPI" id="fig-qualitative-comparisons-2d-vs-3d"/>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="citation">
+            <a href="#citation"><h2><u>Citation</u></h2></a>
+            If you use our work, please cite our paper:
+            <div class="citation" style="margin-bottom: 25px">
+                Nagabhushan Somraj, Pranali Sancheti and Rajiv Soundararajan,
+                "Temporal View Synthesis of Dynamic Scenes through 3D Object Motion Estimation with Multi-Plane Images",
+                In <i>Proceedings of the IEEE International Symposium on Mixed and Augmented Reality (ISMAR)</i>, 2022.
+            </div>
+
+            <u>Bibtex</u>:
+            <div class="citation" style="margin-bottom: 25px">
+                @inproceedings{somraj2022decompnet, <br>
+                &ensp; &ensp; title = {Temporal View Synthesis of Dynamic Scenes through 3D Object Motion Estimation with Multi-Plane Images}, <br>
+                &ensp; &ensp; author = {Somraj, Nagabhushan and Sancheti, Pranali and Soundararajan, Rajiv}, <br>
+                &ensp; &ensp; booktitle = {IEEE International Symposium on Mixed and Augmented Reality (ISMAR)}, <br>
+                &ensp; &ensp; month = {October}, <br>
+                &ensp; &ensp; year = {2022} <br>
+                }
+            </div>
+        </div>
     </div>
 </div>
 <!-- Page content - End -->
