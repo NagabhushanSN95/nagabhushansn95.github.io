@@ -74,6 +74,24 @@ video {
     text-align: center;
 }
 
+#video-comparison1 {
+    max-width: 1380px;
+    width: 100%;
+    height: auto;
+}
+
+#video-comparison2 {
+    max-width: 1230px;
+    width: 100%;
+    height: auto;
+}
+
+#video-comparison3 {
+    max-width: 1040px;
+    width: 100%;
+    height: auto;
+}
+
 #fig-summary {
     width: 100%;
     max-width: 4434px;
