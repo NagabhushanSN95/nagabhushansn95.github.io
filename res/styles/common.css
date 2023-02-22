@@ -6,6 +6,12 @@
     font-size: 300%;
 }
 
+.page-subtitle {
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 175%;
+}
+
 p {
     text-align: justify;
     text-justify: inter-word;
