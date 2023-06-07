@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ViP-NeRF: Visibility Prior for Sparse Input Neural Radiance Fields</title>
+    <link rel="stylesheet" href="../../res/styles/w3.css">
+    <link rel="stylesheet" href="../../res/styles/common.css">
+    <link rel="stylesheet" href="../../res/styles/navigation.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="../../res/scripts/navigation.js"></script>
+
+    <link rel="stylesheet" href="vipnerf/styles/vipnerf.css">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="ViP-NeRF: Visibility Prior for Sparse Input Neural Radiance Fields">
+    <meta name="keywords"
+          content="Neural Radiance Fields, NeRF, Neural Rendering, View Synthesis, Sparse Input, Sparse View, Visibility Prior, Plane Sweep Volume">
+    <meta name="author" content="Nagabhushan S N">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- Page content - Start -->
+<div class="w3-main">
+    <div class="w3-container" id="title-panel">
+        <h1 class="page-title">ViP-NeRF: Visibility Prior for Sparse Input Neural Radiance Fields</h1>
+        <p class="page-subtitle">ACM Special Interest Group on Computer Graphics and Interactive Techniques (SIGGRAPH), 2023</p>
+        <p style="text-align: center; font-size: large">
+            <a href="../../index.html" target="_blank"><u>Nagabhushan Somraj</u></a> and
+            <a href="https://ece.iisc.ac.in/~rajivs" target="_blank"><u>Rajiv Soundararajan</u></a>
+        </p>
+        <p style="text-align: center; font-size: large">
+            Indian Institute of Science
+        </p>
+        <div class="w3-container" id="downloads" style="text-align: center">
+            <a href="" target="_blank">
+                <button class="link-button" title="View paper on IEEE Xplore">ACM</button>
+            </a>
+            <a href="" target="_blank">
+                <button class="link-button" title="View paper on arXiv">arXiv</button>
+            </a>
+            <a href="https://github.com/NagabhushanSN95/ViP-NeRF" target="_blank">
+                <button class="link-button" title="View Code on GitHub">Code</button>
+            </a>
+            <a href="" target="_blank">
+                <button class="link-button" title="View SIGGRAPH 2023 Slides">Slides</button>
+            </a>
+            <a href="" target="_blank">
+                <button class="link-button" title="View SIGGRAPH 2023 Poster">Poster</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="list-of-contents">
+            <a href="#list-of-contents"><h2><u>Contents</u></h2></a>
+            <ul>
+                <li><a href="#video-presentations">Video Presentations</a></li>
+                <li><a href="#video-comparison">Video Comparisons</a></li>
+                <li><a href="#vipnerf-model">ViP-NeRF Model</a></li>
+                <li><a href="#qualitative-results">Qualitative Results</a></li>
+                <li><a href="#citation">Citation</a></li>
+            </ul>
+        </div>
+
+        <div class="w3-container" id="video-presentations">
+            <a href="#video-presentations"><h2><u>Technical Talks on this work</u></h2></a>
+            <ul>
+<!--                <li> SIGGRAPH 2023 prerecorded video:-->
+<!--                    <div class="w3-container" id="ismar-video">-->
+<!--                        <iframe width="720" height="405"-->
+<!--                                src="https://www.youtube.com/embed/_wA8gEONaOc">-->
+<!--                        </iframe>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li>18-Oct-2022: In <a href="https://ismar2022.org/program-paper-presentations/#rendering1" target="_blank">ISMAR 2022</a>.-->
+<!--                    [<a href="" target="_blank">Video</a>]</li>-->
+<!--                <li>01-Feb-2022: In <a href="../../miscellaneous.html#iisc-srss-2022-decompnet" target="_blank">IISc Student Research Seminar Series, 2022</a>.-->
+<!--                    [<a href="https://www.youtube.com/watch?v=Zz1cF76qdDw" target="_blank">Video</a>]</li>-->
+            </ul>
+        </div>
+        <div class="w3-container" id="video-comparison">
+            <a href="#video-comparison"><h2><u>Sample comparison videos with other competing methods</u></h2></a>
+
+            <h4>Play the videos in the fullscreen mode for the best view</h4>
+
+            <div>
+                <figure style="width: 100%">
+                    <video id="video-comparison1" class="video-comparisons-re10k" muted controls>
+                        <source src="vipnerf/videos/DDPNeRF_ViPNeRF_RealEstate_00001.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00001</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video id="video-comparison2" class="video-comparisons-re10k" muted controls>
+                        <source src="vipnerf/videos/DDPNeRF_ViPNeRF_RealEstate_00003.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00003</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video id="video-comparison3" class="video-comparisons-re10k" muted controls>
+                        <source src="vipnerf/videos/DSNeRF_ViPNeRF_RealEstate_00004.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00004</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video id="video-comparison4" class="video-comparisons-re10k" muted controls>
+                        <source src="vipnerf/videos/DSNeRF_ViPNeRF_RealEstate_00006.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00006</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video id="video-comparison5" class="video-comparisons-re10k" muted controls>
+                        <source src="vipnerf/videos/RegNeRF_ViPNeRF_RealEstate_00000.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00000</figcaption>
+                </figure>
+                <figure style="width: 100%">
+                    <video id="video-comparison6" class="video-comparisons-llff" muted controls>
+                        <source src="vipnerf/videos/RegNeRF_ViPNeRF_LLFF_horns.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - horns</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="abstract">
+            <a href="#abstract"><h2><u>Abstract</u></h2></a>
+            Neural radiance fields (NeRF) have achieved impressive performances in view synthesis by encoding neural representations of a scene.
+            However, NeRFs require hundreds of images per scene to synthesize photo-realistic novel views.
+            Training them on sparse input views leads to overfitting and incorrect scene depth estimation resulting in artifacts in the rendered novel views.
+            Sparse input NeRFs were recently regularized by providing dense depth estimated from pre-trained networks as supervision, to achieve improved performance over sparse depth constraints.
+            However, we find that such depth priors may be inaccurate due to generalization issues.
+            Instead, we hypothesize that the visibility of pixels in different input views can be more reliably estimated to provide dense supervision.
+            In this regard, we compute a visibility prior through the use of plane sweep volumes, which does not require any pre-training.
+            By regularizing the NeRF training with the visibility prior, we successfully train the NeRF with few input views.
+            We reformulate the NeRF to also directly output the visibility of a 3D point from a given viewpoint to reduce the training time with the visibility constraint.
+            On multiple datasets, our model outperforms the competing sparse input NeRF models including those that use learned priors.
+        </div>
+
+        <div class="w3-container" id="vipnerf-model">
+            <a href="#vipnerf-model"><h2><u>ViP-NeRF - Model Architecture</u></h2></a>
+
+            <img src="vipnerf/images/ModelArchitecture01.png" alt="Model Architecture" id="fig-vipnerf-architecture" style="width: 100%"/>
+        </div>
+
+        <div class="w3-container" id="visibility-prior-computation">
+            <a href="#visibility-prior-computation"><h2><u>VIsibility Prior Computation</u></h2></a>
+
+            <img src="vipnerf/images/VisibilityPriorComputation.png" alt="Visibility Prior Computation" id="fig-visibility-prior-computation" style="width: 100%"/>
+        </div>
+
+<!--        <hr class="w3-dark-gray" style="height: 1px; width: 100%">-->
+
+<!--        <div class="w3-container" id="database">-->
+<!--            <a href="#database"><h2><u>IISc VEED-Dynamic Database</u></h2></a>-->
+<!--            The database consists of 200 diverse indoor and outdoor scenes (see samples below).-->
+<!--            We use <a href="https://blender.org" target="_blank">Blender</a> to render the videos.-->
+<!--            We obtain the blend files for the scenes mainly from <a href="https://www.blendswap.com" target="_blank">blendswap</a> and <a href="https://www.turbosquid.com" target="_blank">turbosquid</a>.-->
+<!--            4 different camera trajectories are added to each scene and thus we have a total of 800 videos.-->
+<!--            Motion is added to pre-existing objects in the scene or new objects are added and animated.-->
+<!--            The videos are rendered at full HD resolution (1920 x 1080) and at 30fps and contain 12 frames each. <br/>-->
+
+<!--            <div class="w3-container" id="database-samples">-->
+<!--                <a href="#database-samples"><h3>Samples</h3></a>-->
+
+<!--                <div class="four-video-row">-->
+<!--                    <figure style="width: 24%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/kitchen06_seq02.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Kitchen</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 24%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/modern_bedroom03_seq03.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Bedroom</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 24%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/skyscraper02_seq00.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Skyscraper</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 24%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/video03_seq01.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Forest</figcaption>-->
+<!--                    </figure>-->
+<!--                </div>-->
+
+<!--                <div class="two-video-row">-->
+<!--                    <figure style="width: 48%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/kitchen06_seq02.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Kitchen</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 48%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/modern_bedroom03_seq03.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Bedroom</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 48%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/skyscraper02_seq00.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Skyscraper</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 48%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/video03_seq01.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Forest</figcaption>-->
+<!--                    </figure>-->
+<!--                </div>-->
+
+<!--                <div class="one-video-row">-->
+<!--                    <figure style="width: 96%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/kitchen06_seq02.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Kitchen</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 96%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/modern_bedroom03_seq03.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Bedroom</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 96%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/skyscraper02_seq00.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Skyscraper</figcaption>-->
+<!--                    </figure>-->
+<!--                    <figure style="width: 96%">-->
+<!--                        <video width="320px" height="180px" autoplay loop muted controls>-->
+<!--                            <source src="decompnet/videos/video03_seq01.mp4" type="video/mp4">-->
+<!--                            Your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <figcaption class="caption">Forest</figcaption>-->
+<!--                    </figure>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <hr class="w3-dark-gray" style="height: 1px; width: 100%">-->
+
+<!--        <div class="w3-container" id="qualitative-results">-->
+<!--            <a href="#qualitative-results"><h2><u>Qualitative Results</u></h2></a>-->
+
+<!--            <div class="w3-container" id="frame-life-cycle">-->
+<!--                <a href="#frame-life-cycle"><h3><u>Visualization of outputs of various stages of our framework</u></h3></a>-->
+<!--                <img src="decompnet/images/FrameLifecycle.png" alt="Frame Life Cycle" id="fig-frame-life-cycle"/>-->
+<!--            </div>-->
+
+<!--            <div class="w3-container" id="qualitative-comparisons-veedd">-->
+<!--                <a href="#qualitative-comparisons-veedd"><h3><u>Qualitative Comparisons on IISc VEED-Dynamic Database</u></h3></a>-->
+<!--                <img src="decompnet/images/QualitativeComparisons_OursBlender.jpg" alt="Qualitative Comparisons" id="fig-qualitative-comparisons-veedd"/>-->
+<!--            </div>-->
+
+<!--            <div class="w3-container" id="qualitative-comparisons-sintel">-->
+<!--                <a href="#qualitative-comparisons-sintel"><h3><u>Qualitative Comparisons on MPI-Sintel Database</u></h3></a>-->
+<!--                <img src="decompnet/images/QualitativeComparisons_Sintel.jpg" alt="Qualitative Comparisons" id="fig-qualitative-comparisons-sintel"/>-->
+<!--            </div>-->
+
+<!--            <div class="w3-container" id="qualitative-comparisons-2d-vs-3d">-->
+<!--                <a href="#qualitative-comparisons-2d-vs-3d"><h3><u>Flow estimation with and without MPI</u></h3></a>-->
+<!--                <img src="decompnet/images/Flow2dVs3d.png" alt="Effect of MPI" id="fig-qualitative-comparisons-2d-vs-3d"/>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="citation">
+            <a href="#citation"><h2><u>Citation</u></h2></a>
+            If you use our work, please cite our paper:
+            <div class="citation" style="margin-bottom: 25px">
+                Nagabhushan Somraj and Rajiv Soundararajan,
+                "ViP-NeRF: Visibility Prior for Sparse Input Neural Radiance Fields",
+                In <i>Proceedings of the ACM Special Interest Group on Computer Graphics and Interactive Techniques (SIGGRAPH)</i>,
+                pp. 817-826, Aug 2023, doi: 10.1145/3588432.3591539.
+            </div>
+
+            <u>Bibtex</u>:
+            <div class="citation" style="margin-bottom: 25px">
+                @inproceedings{somraj2022decompnet, <br>
+                &ensp; &ensp; title = {ViP-NeRF: Visibility Prior for Sparse Input Neural Radiance Fields}, <br>
+                &ensp; &ensp; author = {Somraj, Nagabhushan and Soundararajan, Rajiv}, <br>
+                &ensp; &ensp; booktitle = {ACM Special Interest Group on Computer Graphics and Interactive Techniques (SIGGRAPH)}, <br>
+<!--                &ensp; &ensp; pages = {817-826}, <br>-->
+                &ensp; &ensp; month = {August}, <br>
+                &ensp; &ensp; year = {2023}, <br>
+                &ensp; &ensp; doi = {10.1145/3588432.3591539} <br>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content - End -->
+
+</body>
+</html>
