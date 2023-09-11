@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SimpleNeRF: Regularizing Sparse Input Neural Radiance Fields with Simpler Solutions</title>
+    <link rel="stylesheet" href="../../res/styles/w3.css">
+    <link rel="stylesheet" href="../../res/styles/common.css">
+    <link rel="stylesheet" href="../../res/styles/navigation.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="../../res/scripts/navigation.js"></script>
+
+    <link rel="stylesheet" href="simplenerf/styles/simplenerf.css">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="SimpleNeRF: Regularizing Sparse Input Neural Radiance Fields with Simpler Solutions">
+    <meta name="keywords"
+          content="Neural Radiance Fields, NeRF, Neural Rendering, View Synthesis, Sparse Input, Sparse View, Learnt Depth Prior, Simpler Solutions">
+    <meta name="author" content="Nagabhushan S N">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- Page content - Start -->
+<div class="w3-main">
+    <div class="w3-container" id="title-panel">
+        <h1 class="page-title">SimpleNeRF: Regularizing Sparse Input Neural Radiance Fields with Simpler Solutions</h1>
+        <p class="page-subtitle">SIGGRAPH Asia, 2023</p>
+        <p style="text-align: center; font-size: large">
+            <a href="../../index.html"><u>Nagabhushan Somraj</u></a>,
+            <a href="https://orcid.org/0009-0008-3343-8566"><u>Adithyan Karanayil</u></a> and
+            <a href="https://ece.iisc.ac.in/~rajivs"><u>Rajiv Soundararajan</u></a>
+        </p>
+        <p style="text-align: center; font-size: large">
+            Indian Institute of Science
+        </p>
+        <div class="w3-container" id="downloads" style="text-align: center">
+            <a href="https://dl.acm.org/doi/abs/10.1145">
+                <button class="link-button" title="View paper on ACM Library">ACM</button>
+            </a>
+            <a href="https://arxiv.org/abs/2309.03955">
+                <button class="link-button" title="View paper on arXiv">arXiv</button>
+            </a>
+            <a href="https://github.com/NagabhushanSN95/SimpleNeRF">
+                <button class="link-button" title="View Code on GitHub">Code</button>
+            </a>
+            <a href="">
+                <button class="link-button" title="View SIGGRAPH Asia 2023 Slides">Slides</button>
+            </a>
+            <a href="">
+                <button class="link-button" title="View SIGGRAPH Asia 2023 Poster">Poster</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="list-of-contents">
+            <a href="#list-of-contents"><h2><u>Contents</u></h2></a>
+            <ul>
+                <li><a href="#representative-figure">Representative Figure</a></li>
+                <li><a href="#video-presentations">Video Presentations</a></li>
+                <li><a href="#video-comparisons">Video Comparisons</a></li>
+                <li><a href="#simplenerf-model">SimpleNeRF Model</a></li>
+                <li><a href="#citation">Citation</a></li>
+            </ul>
+        </div>
+
+        <div class="w3-container" id="representative-figure">
+            <a href="#representative-figure"><h2><u>Representative Figure</u></h2></a>
+
+            <img src="simplenerf/images/RepresentativeFigure.jpg" alt="Representative Figure" id="fig-representative-figure" style="width: 100%"/>
+        </div>
+
+        <div class="w3-container" id="video-presentations">
+            <a href="#video-presentations"><h2><u>Technical Talks on this work</u></h2></a>
+            <ul>
+<!--                <li> SIGGRAPH 2023 prerecorded video:-->
+<!--                    <div class="w3-container" id="ismar-video">-->
+<!--                        <iframe width="720" height="405"-->
+<!--                                src="https://www.youtube.com/embed/_wA8gEONaOc">-->
+<!--                        </iframe>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li>18-Oct-2022: In <a href="https://ismar2022.org/program-paper-presentations/#rendering1">ISMAR 2022</a>.-->
+<!--                    [<a href="">Video</a>]</li>-->
+<!--                <li>01-Feb-2022: In <a href="../../miscellaneous.html#iisc-srss-2022-decompnet">IISc Student Research Seminar Series, 2022</a>.-->
+<!--                    [<a href="https://www.youtube.com/watch?v=Zz1cF76qdDw">Video</a>]</li>-->
+            </ul>
+        </div>
+        <div class="w3-container" id="video-comparisons">
+            <a href="#video-comparisons"><h2><u>Sample comparison videos</u></h2></a>
+
+            <h4>Play the videos in the fullscreen mode for the best view</h4>
+
+            <div class="w3-container" id="video-comparisons-floaters">
+                <a href="#video-comparisons-floaters"><h3>Mitigation of Floater Artifacts</h3></a>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-f1" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/woPointsAugmentation_LLFF_fortress.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - fortress</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-f2" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/wIdenticalAugmentations_LLFF_fortress.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - fortress</figcaption>
+                </figure>
+            </div>
+
+            <div class="w3-container" id="video-comparisons-shape-radiance-ambiguity">
+                <a href="#video-comparisons-shape-radiance-ambiguity"><h3>Mitigation of Shape-Radiance Ambiguity</h3></a>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-sra1" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/DSNeRF_SimpleNeRF_LLFF_room_SC.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - room</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-sra2" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/DSNeRF_SimpleNeRF_LLFF_trex_SC.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - trex</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-sra3" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/ViPNeRF_SimpleNeRF_LLFF_room_SC.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - room</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-sra4" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/ViPNeRF_SimpleNeRF_LLFF_trex_SC.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - trex</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-sra5" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/woViewsAugmentation_LLFF_room_SC.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - room</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-sra6" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/wIdenticalAugmentations_LLFF_room_SC.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - room</figcaption>
+                </figure>
+            </div>
+
+            <div class="w3-container" id="video-comparisons-competing-models">
+                <a href="#video-comparisons-competing-models"><h3>Comparison with Competing Models</h3></a>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm1" class="video-comparisons-re10k" muted controls>
+                        <source src="simplenerf/videos/DSNeRF_SimpleNeRF_RealEstate_00004.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00004</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm2" class="video-comparisons-re10k" muted controls>
+                        <source src="simplenerf/videos/DSNeRF_SimpleNeRF_RealEstate_00006.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00006</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm3" class="video-comparisons-re10k" muted controls>
+                        <source src="simplenerf/videos/DDPNeRF_SimpleNeRF_RealEstate_00000.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00000</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm4" class="video-comparisons-re10k" muted controls>
+                        <source src="simplenerf/videos/DDPNeRF_SimpleNeRF_RealEstate_00003.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00003</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm5" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/DDPNeRF_SimpleNeRF_LLFF_room.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - room</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm6" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/DDPNeRF_SimpleNeRF_LLFF_room_SC.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - room</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm7" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/RegNeRF_SimpleNeRF_LLFF_flower.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - flower</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm8" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/RegNeRF_SimpleNeRF_LLFF_orchids.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - orchids</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm9" class="video-comparisons-llff" muted controls>
+                        <source src="simplenerf/videos/FreeNeRF_SimpleNeRF_LLFF_fortress.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">LLFF - fortress</figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm10" class="video-comparisons-re10k" muted controls>
+                        <source src="simplenerf/videos/ViPNeRF_SimpleNeRF_RealEstate_00001.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">RealEstate-10K - 00001</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="abstract">
+            <a href="#abstract"><h2><u>Abstract</u></h2></a>
+            Neural Radiance Fields (NeRF) show impressive performance for the photo-realistic free-view rendering of scenes. 
+            However, NeRFs require dense sampling of images in the given scene, and their performance degrades significantly when only a sparse set of views are available. 
+            Researchers have found that supervising the depth estimated by the NeRF helps train it effectively with fewer views. 
+            The depth supervision is obtained either using classical approaches or neural networks pre-trained on a large dataset. 
+            While the former may provide only sparse supervision, the latter may suffer from generalization issues. 
+            As opposed to the earlier approaches, we seek to learn the depth supervision by designing augmented models and training them along with the NeRF. 
+            We design augmented models that encourage simpler solutions by exploring the role of positional encoding and view-dependent radiance in training the few-shot NeRF. 
+            The depth estimated by these simpler models is used to supervise the NeRF depth estimates. 
+            Since the augmented models can be inaccurate in certain regions, we design a mechanism to choose only reliable depth estimates for supervision. 
+            Finally, we add a consistency loss between the coarse and fine multi-layer perceptrons of the NeRF to ensure better utilization of hierarchical sampling. 
+            We achieve state-of-the-art view-synthesis performance on two popular datasets by employing the above regularizations.
+        </div>
+
+        <div class="w3-container" id="simplenerf-model">
+            <a href="#simplenerf-model"><h2><u>SimpleNeRF - Model Architecture</u></h2></a>
+
+            <img src="simplenerf/images/ModelArchitecture03.png" alt="Model Architecture" id="fig-simplenerf-architecture" style="width: 100%"/>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="citation">
+            <a href="#citation"><h2><u>Citation</u></h2></a>
+            If you use our work, please cite our paper:
+            <div class="citation" style="margin-bottom: 25px">
+                Nagabhushan Somraj, Adithyan Karanayil and Rajiv Soundararajan,
+                "SimpleNeRF: Regularizing Sparse Input Neural Radiance Fields with Simpler Solutions",
+                In <i>Proceedings of the ACM SIGGRAPH Asia</i>,
+                Dec 2023, doi: 10.1145/3610548.3618188.
+            </div>
+
+            <u>Bibtex</u>:
+            <div class="citation" style="margin-bottom: 25px">
+                @inproceedings{somraj2022decompnet, <br>
+                &ensp; &ensp; title = {{SimpleNeRF}: Regularizing Sparse Input Neural Radiance Fields with Simpler Solutions}, <br>
+                &ensp; &ensp; author = {Somraj, Nagabhushan and Karanayil, Adithyan and Soundararajan, Rajiv}, <br>
+                &ensp; &ensp; booktitle = {SIGGRAPH Asia}, <br>
+<!--                &ensp; &ensp; pages = {817-826}, <br>-->
+                &ensp; &ensp; month = {December}, <br>
+                &ensp; &ensp; year = {2023}, <br>
+                &ensp; &ensp; doi = {10.1145/3610548.3618188} <br>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content - End -->
+
+</body>
+</html>
