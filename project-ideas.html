@@ -129,7 +129,46 @@
                target="_blank">"NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis"</a>, ECCV 2020. <br>
             [2] Jonathan T Barron <i>et al.</i>
             <a href="https://openaccess.thecvf.com/content/ICCV2021/html/Barron_Mip-NeRF_A_Multiscale_Representation_for_Anti-Aliasing_Neural_Radiance_Fields_ICCV_2021_paper.html"
-               target="_blank">"Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields"</a>, ICLR 2019.
+               target="_blank">"Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields"</a>, ICCV 2021.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2023-07-20">
+            <a href="project-ideas.html#2023-07-20"><h5>2023-07-20: Is pixelNeRF feature encoder secretly a mono depth estimator</h5></a>
+            <p>
+                Vanilla NeRF [1] needs to be trained for every scene, which was overcome by pixelNeRF [2], which is a generalized NeRF model. The core idea is to employ a feature extractor on the input images and condition the NeRF MLP on the feature at the corresponding 3D point in addition to the 3D point location and viewing direction. The feature at the queried 3D point is obtained by projecting the 3D point onto the image plane and bilinearly interpolating the feature map at the projected point. As a result, all the 3D points along the ray corresponding to a pixel will share the same feature. How can the NeRF MLP distinguish the 3D points? (See "<a href="#2023-07-15">What is the role of MLP in generalizable NeRF models?</a>" to understand why). Is it that the feature encoder embeds mono-depth information into the feature vector and the MLP checks if the depth of the 3D point matches with the depth embedded in the feature vector to determine the volume density?
+            </p>
+
+            <p>
+                One way to validate this is to add a few more conv layers on top of pixelNeRF encoder and train the additional layers to predict depth from the features. Note that the pixelNeRF feature encoder should be frozen during this training. True depth or depth estimated by a state-of-the-art mono-depth model can be used to supervise the training of the additional layers. If this model is able to estimate depth to high accuracy, it indicates that the pixelNeRF feature encoder is acting also as a mono-depth estimator and embedding the depth information in the feature vectors.
+            </p>
+
+            [1] Ben Mildenhall <i>et al.</i>
+            <a href="https://dl.acm.org/doi/abs/10.1145/3503250"
+               target="_blank">"NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis"</a>, ECCV 2020. <br>
+            [2] Alex Yu <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Yu_pixelNeRF_Neural_Radiance_Fields_From_One_or_Few_Images_CVPR_2021_paper.html"
+               target="_blank">"pixelNeRF: Neural Radiance Fields From One or Few Images"</a>, CVPR 2021.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
+        <div class="w3-container" id="2023-07-15">
+            <a href="project-ideas.html#2023-07-15"><h5>2023-07-15: What is the role of MLP in generalizable NeRF models?</h5></a>
+            <p>
+                Vanilla NeRF [1] needs to be trained for every scene, which was overcome by generalized NeRF models such as pixelNeRF [2], MVS-NeRF [3] and so on. The core idea is to employ a feature extractor on the input images and condition the NeRF MLP on the feature at the corresponding 3D point in addition to the 3D point location and viewing direction. When using in the generalized setup without any scene-specific fine-tuning, this raises the question that whether the 3D point location contributes any information. One way to validate this is to remove the 3D location from the inputs and feed only the feature at the 3D point and the viewing direction to the NeRF MLP and analyze the performance. If there is no significant drop in generalized (unseen scenes) performance, then it can be concluded that the MLP is simply acting as a decoder for the 3D features. How does the performance vary for scene-specific fine-tuning?
+            </p>
+
+            [1] Ben Mildenhall <i>et al.</i>
+            <a href="https://dl.acm.org/doi/abs/10.1145/3503250"
+               target="_blank">"NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis"</a>, ECCV 2020. <br>
+            [2] Alex Yu <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Yu_pixelNeRF_Neural_Radiance_Fields_From_One_or_Few_Images_CVPR_2021_paper.html"
+               target="_blank">"pixelNeRF: Neural Radiance Fields From One or Few Images"</a>, CVPR 2021. <br>
+            [3] Anpei Chen <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content/ICCV2021/html/Chen_MVSNeRF_Fast_Generalizable_Radiance_Field_Reconstruction_From_Multi-View_Stereo_ICCV_2021_paper.html"
+               target="_blank">"MVSNeRF: Fast Generalizable Radiance Field Reconstruction From Multi-View Stereo"</a>, ICCV 2021.
 
             <hr class="w3-dark-gray" style="height: 1px; width: 100%">
         </div>
