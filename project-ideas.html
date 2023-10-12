@@ -115,6 +115,25 @@
     <div class="w3-container" id="research-ideas" style="width: 80%; margin-left: 10%; padding-top: 30px">
         <a href="project-ideas.html#research-ideas"><h3><u>Research Based Ideas</u></h3></a>
 
+        <div class="w3-container" id="2023-10-12">
+            <a href="project-ideas.html#2023-10-12"><h5>2023-10-12: Stress Testing Mip-NeRF</h5></a>
+            <p>
+                Mip-NeRF [2] was proposed to address antialiasing limitation of NeRF [1]. Specifically, if the same scene-region/object is captured at different scales, NeRF breaks down and introduces blur or aliasing artifacts. Mip-NeRF addresses this by providing expected positional encoding of the conical frustum along the cone as input to the MLP instead of positional encoding of the centroid of the cone as done in NeRF. For evaluation, the train and test sets of the original NeRF are downsampled to three different scales. On the multi-scale dataset, Mip-NeRF performs significantly better than NeRF.
+            </p>
+            <p>
+                Thinking from fundamental graphics principles, antialiasing should be implemented by integrating the sigma/radiance (output of MLP) over the conical frustum. Integrating the inputs may not have the desired antialiasing effect. That is, the input to the MLP is different at different scales and the MLP can exploit this to hack through and provide antialiased outputs. Thus, if the scale changes at test time/novel view to a value unseen during training, Mip-NeRF could potentially output junk. However, it is not clear if this will actually happen. The MLP could learn to integrate the sigma/radiance when the inputs corresponding to higher dimension are zero. So, it is interesting to experiment this: train Mip-NeRF on the original Blender dataset [1] and test it on the multi-scale Blender dataset [2].
+            </p>
+
+            [1] Ben Mildenhall <i>et al.</i>
+            <a href="https://dl.acm.org/doi/abs/10.1145/3503250"
+               target="_blank">"NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis"</a>, ECCV 2020. <br>
+            [2] Jonathan T Barron <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content/ICCV2021/html/Barron_Mip-NeRF_A_Multiscale_Representation_for_Anti-Aliasing_Neural_Radiance_Fields_ICCV_2021_paper.html"
+               target="_blank">"Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields"</a>, ICLR 2019.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
         <div class="w3-container" id="2020-05-03">
             <a href="project-ideas.html#2020-05-03"><h5>2020-05-03: Adversarial training and bias of deep features
                 towards local texture</h5></a>
