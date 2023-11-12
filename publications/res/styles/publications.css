@@ -11,11 +11,11 @@ a:hover {
 }
 
 
-a.colored-link:link {
+a.colored-link, a.colored-link:link {
     color: #2196F3;
     text-decoration: none;
 }
-a.colored-link:hover {
+a.colored-link, a.colored-link:hover {
     color: #0072b1;
     text-decoration: underline;
 }
