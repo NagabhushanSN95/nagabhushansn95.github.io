@@ -115,6 +115,33 @@
     <div class="w3-container" id="research-ideas" style="width: 80%; margin-left: 10%; padding-top: 30px">
         <a href="project-ideas.html#research-ideas"><h3><u>Research Based Ideas</u></h3></a>
 
+        <div class="w3-container" id="2024-02-12">
+            <a href="project-ideas.html#2024-02-12"><h5>2024-02-12: Is learnt depth prior needed in SCADE (sparse-input NeRF)</h5></a>
+            <p>
+                SCADE [2] was proposed to train NeRF [1] with few inputs.
+                Specifically, a mono-depth model is used to obtain depth prior.
+                Instead of obtaining a single depth prior, SCADE uses a mono-depth model that takes a latent vector to condition the uncertainty in predicting mono-depth.
+                By providing multiple latent vectors sampled from a unit Gaussian, multiple depth priors are obtained per pixel thereby obtaining a distribution on depth.
+                The depth distribution from NeRF is obtained using coarse NeRF and samples are obtained by inverse transform sampling.
+                Space carving loss is imposed between the samples from the depth distributions of prior and NeRF.
+            </p>
+            <p>
+                Is it necessary to obtain depth prior from a deep neural network? Deep neural networks are known to suffer from generalization issues.
+                Instead, can we obtain depth prior from Plane-Sweep-Volumes?
+                Specifically, based on the errors/variance at every plane, apply inverse transform sampling to obtain depth prior samples.
+                How well would this do across different datasets?
+            </p>
+
+            [1] Ben Mildenhall <i>et al.</i>
+            <a href="https://dl.acm.org/doi/abs/10.1145/3503250"
+               target="_blank">"NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis"</a>, ECCV 2020. <br>
+            [2] Mikaela Angelina Uy <i>et al.</i>
+            <a href="https://openaccess.thecvf.com/content/CVPR2023/html/Uy_SCADE_NeRFs_from_Space_Carving_With_Ambiguity-Aware_Depth_Estimates_CVPR_2023_paper.html"
+               target="_blank">"SCADE: NeRFs from Space Carving With Ambiguity-Aware Depth Estimates"</a>, CVPR 2023.
+
+            <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+        </div>
+
         <div class="w3-container" id="2023-10-13">
             <a href="project-ideas.html#2023-10-13"><h5>2023-10-13: Analyzing Mip-NeRF Components</h5></a>
             <p>
