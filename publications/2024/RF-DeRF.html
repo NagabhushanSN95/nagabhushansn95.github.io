@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Factorized Motion Fields for Fast Sparse Input Dynamic View Synthesis</title>
+    <link rel="stylesheet" href="../../res/styles/w3.css">
+    <link rel="stylesheet" href="../../res/styles/common.css">
+    <link rel="stylesheet" href="../../res/styles/navigation.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="../../res/scripts/navigation.js"></script>
+
+    <link rel="stylesheet" href="rfderf/styles/rfderf.css">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Factorized Motion Fields for Fast Sparse Input Dynamic View Synthesis">
+    <meta name="keywords"
+          content="Neural Radiance Fields, Dynamic Radiance Fields, Deformable Radiance Fields, NeRF, K-Planes, DeRF, RF-DeRF, Neural Rendering, Dynamic View Synthesis, Sparse Input, Sparse View, Sparse Flow Prior">
+    <meta name="author" content="Nagabhushan S N">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- Page content - Start -->
+<div class="w3-main">
+    <div class="w3-container" id="title-panel">
+        <h1 class="page-title">Factorized Motion Fields for Fast Sparse Input Dynamic View Synthesis</h1>
+        <p class="page-subtitle">SIGGRAPH, 2024</p>
+        <p style="text-align: center; font-size: large">
+            <a href="../../index.html"><u>Nagabhushan Somraj</u></a>,
+            <a href="https://orcid.org/0009-0000-2643-6329"><u>Kapil Choudhary</u></a>,
+            <a href="https://orcid.org/0009-0003-1638-7051"><u>Sai Harsha Mupparaju</u></a> and
+            <a href="https://ece.iisc.ac.in/~rajivs"><u>Rajiv Soundararajan</u></a>
+        </p>
+        <p style="text-align: center; font-size: large">
+            Indian Institute of Science
+        </p>
+        <div class="w3-container" id="downloads" style="text-align: center">
+            <a href="https://dl.acm.org/doi/abs/10.1145/3641519.3657498">
+                <button class="link-button" title="View paper on ACM Library">ACM</button>
+            </a>
+            <a href="https://arxiv.org/abs/2404.11669">
+                <button class="link-button" title="View paper on arXiv">arXiv</button>
+            </a>
+            <a href="https://github.com/NagabhushanSN95/RF-DeRF">
+                <button class="link-button" title="View Code on GitHub">Code</button>
+            </a>
+            <a href="">
+                <button class="link-button" title="View SIGGRAPH 2024 Slides">Slides</button>
+            </a>
+            <a href="">
+                <button class="link-button" title="View SIGGRAPH 2024 Poster">Poster</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="list-of-contents">
+            <a href="#list-of-contents"><h2><u>Contents</u></h2></a>
+            <ul>
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#representative-figure">Representative Figure</a></li>
+                <li><a href="#video-presentations">Technical Talks on this work</a></li>
+                <li><a href="#video-comparisons">Video Comparisons</a></li>
+                <li><a href="#citation">Citation</a></li>
+            </ul>
+        </div>
+
+        <div class="w3-container" id="abstract">
+            <a href="#abstract"><h2><u>Abstract</u></h2></a>
+            Designing a 3D representation of a dynamic scene for fast optimization and rendering is a challenging task.
+            While recent explicit representations enable fast learning and rendering of dynamic radiance fields, they require a dense set of input viewpoints.
+            In this work, we focus on learning a fast representation for dynamic radiance fields with sparse input viewpoints.
+            However, the optimization with sparse input is under-constrained and necessitates the use of motion priors to constrain the learning.
+            Existing fast dynamic scene models do not explicitly model the motion, making them difficult to be constrained with motion priors.
+            We design an explicit motion model as a factorized 4D representation that is fast and can exploit the spatio-temporal correlation of the motion field.
+            We then introduce reliable flow priors including a combination of sparse flow priors across cameras and dense flow priors within cameras to regularize our motion model.
+            Our model is fast, compact and achieves very good performance on popular multiview dynamic scene datasets with sparse input viewpoints.
+        </div>
+
+        <div class="w3-container" id="representative-figure">
+            <a href="#representative-figure"><h2><u>Representative Figure</u></h2></a>
+
+            <img src="rfderf/images/RepresentativeFigure.jpg" alt="Representative Figure" id="fig-representative-figure" style="width: 100%"/>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="video-presentations">
+            <a href="#video-presentations"><h2><u>Technical Talks on this work</u></h2></a>
+            <ul>
+<!--                <li> SIGGRAPH 2023 prerecorded video:-->
+<!--                    <div class="w3-container" id="ismar-video">-->
+<!--                        <iframe width="720" height="405"-->
+<!--                                src="https://www.youtube.com/embed/_wA8gEONaOc">-->
+<!--                        </iframe>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li> 30 min talk:-->
+<!--                    <div class="w3-container" id="siggraph-video">-->
+<!--                        <iframe width="560" height="315" title="YouTube video player" style="border: none" allowfullscreen-->
+<!--                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
+<!--                                src="https://www.youtube.com/embed/RbyVxi1zWzU?si=vkBKFzvA7-yJ2PJ6">-->
+<!--                        </iframe>-->
+<!--                    </div>-->
+<!--                </li>-->
+
+<!--                <li>18-Oct-2022: In <a href="https://ismar2022.org/program-paper-presentations/#rendering1">ISMAR 2022</a>.-->
+<!--                    [<a href="">Video</a>]</li>-->
+<!--                <li>01-Feb-2022: In <a href="../../miscellaneous.html#iisc-srss-2022-decompnet">IISc Student Research Seminar Series, 2022</a>.-->
+<!--                    [<a href="https://www.youtube.com/watch?v=Zz1cF76qdDw">Video</a>]</li>-->
+            </ul>
+        </div>
+        <div class="w3-container" id="video-comparisons">
+            <a href="#video-comparisons"><h2><u>Sample comparison videos</u></h2></a>
+
+            <h4>Play the videos in the fullscreen mode for the best view</h4>
+
+            <div class="w3-container" id="video-comparisons-competing-models">
+                <a href="#video-comparisons-competing-models"><h3>Comparison with Competing Models</h3></a>
+
+                <h4>K-Planes vs RF-DeRF</h4>
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm1" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_RFDeRF_N3DV_cook_spinach.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: cook spinach from N3DV dataset with two input views.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm2" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_RFDeRF_N3DV_cook_spinach_spiral.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: cook spinach from N3DV dataset with two input views.
+                        We show spiral video to show the improvement in learning 3D scene more clearly.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm3" class="video-comparisons-tiny" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_RFDeRF_N3DV_dog.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: N3DV dataset. In this video, we focus on the dog in the scene.
+                        We observe that K-Planes fails to render the eyes of the dog correctly and replaces it with a blur of its skin.
+                        On the other hand, our model is able to render the eyes of the dog better.
+                    </figcaption>
+                </figure>
+
+                <h4>Depth Priors vs Flow Priors</h4>
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm4" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/KplanesSparseDepth_vs_RFDeRF_N3DV_cook_spinach.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: cook spinach from N3DV dataset with two input views.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm5" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/KplanesSparseDepth_vs_RFDeRF_N3DV_cook_spinach_spiral.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: cook spinach from N3DV dataset with two input views.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm6" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/KplanesSparseDepth_vs_RFDeRF_N3DV_flame_steak.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: flame steak from N3DV dataset with two input views.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm7" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/KplanesSparseDepth_vs_RFDeRF_N3DV_sear_steak.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: sear steak from N3DV dataset with two input views.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm8" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/DeRFSparseDepth_vs_RFDeRF_N3DV_flame_salmon.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details:flame salmon from N3DV dataset with three input views.
+                    </figcaption>
+                </figure>
+
+                <h4>Cross-Camera Dense Flow Priors vs Our Priors</h4>
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm9" class="video-comparisons-id" muted controls>
+                        <source src="rfderf/videos/CrossCameraDenseFlowPriors_vs_OurPriors_InterDigital_Birthday.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: Birthday from InterDigital dataset.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm10" class="video-comparisons-tiny" muted controls>
+                        <source src="rfderf/videos/CrossCameraDenseFlowPriors_vs_OurPriors_InterDigital_BirthdayBalloon.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: Birthday from InterDigital dataset.
+                        Observe the blur in the moving green ball on the right of the scene when using naive cross-camera dense flow priors.
+                        We also focus on the moving green ball to show the significant improvement in reconstruction quality when using our priors.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-cm11" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/CrossCameraDenseFlowPriors_vs_OurPriors_N3DV_flame_salmon.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: flame salmon from N3DV dataset.
+                        We find that the left video suffers has a blue shade covering the entire scene and also contains significantly more floating clouds.
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="w3-container" id="video-comparisons-ablations">
+                <a href="#video-comparisons-ablations"><h3>Comparisons with Ablated Models</h3></a>
+
+                <h4>without Sparse Flow Priors</h4>
+                <figure style="width: 100%">
+                    <video id="video-comparison-a1" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/RFDeRFwoSparseFlow_vs_RFDeRF_N3DV_flame_salmon.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: flame salmon from N3DV dataset with three input views.
+                    </figcaption>
+                </figure>
+
+                <h4>without Dense Flow Priors</h4>
+                <figure style="width: 100%">
+                    <video id="video-comparison-a2" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/RFDeRFwoDenseFlow_vs_RFDeRF_N3DV_flame_steak.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: flame steak from N3DV dataset with three input views.
+                        Observe the distortions on the right side of the window when not employing the within-camera dense flow prior.
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="w3-container" id="video-comparisons-dense-input-views">
+                <a href="#video-comparisons-dense-input-views"><h3>With Dense Input Views</h3></a>
+
+                <h4>N3DV Dataset</h4>
+                <figure style="width: 100%">
+                    <video id="video-comparison-d1" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_DeRF_N3DV_coffee_martini.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: coffee martini from N3DV dataset.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-d2" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_DeRF_N3DV_cook_spinach.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: cook spinach from N3DV dataset.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-d3" class="video-comparisons-n3dv" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_DeRF_N3DV_flame_steak.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: flame steak from N3DV dataset.
+                    </figcaption>
+                </figure>
+
+                <h4>InterDigital Dataset</h4>
+                <figure style="width: 100%">
+                    <video id="video-comparison-d4" class="video-comparisons-id" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_DeRF_InterDigital_Birthday.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: Birthday from InterDigital dataset.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-d5" class="video-comparisons-id" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_DeRF_InterDigital_Painter.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: Painter from InterDigital dataset.
+                    </figcaption>
+                </figure>
+
+                <figure style="width: 100%">
+                    <video id="video-comparison-d6" class="video-comparisons-id" muted controls>
+                        <source src="rfderf/videos/Kplanes_vs_DeRF_InterDigital_Train.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption class="caption">
+                        Scene details: Train from InterDigital dataset.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="citation">
+            <a href="#citation"><h2><u>Citation</u></h2></a>
+            If you use our work, please cite our paper:
+            <div class="citation" style="margin-bottom: 25px">
+                Nagabhushan Somraj, Kapil Choudhary and Sai Harsha Mupparaju and Rajiv Soundararajan,
+                "Factorized Motion Fields for Fast Sparse Input Dynamic View Synthesis",
+                In <i>Proceedings of the ACM Special Interest Group on Computer Graphics and Interactive Techniques (SIGGRAPH)</i>,
+                Jul 2024, doi: 10.1145/3641519.3657498.
+            </div>
+
+            <u>Bibtex</u>:
+            <div class="citation" style="margin-bottom: 25px">
+                @inproceedings{somraj2024rfderf, <br>
+                &ensp; &ensp; title = {Factorized Motion Fields for Fast Sparse Input Dynamic View Synthesis}, <br>
+                &ensp; &ensp; author = {Somraj, Nagabhushan and Choudhary, Kapil and Mupparaju, Sai Harsha and Soundararajan, Rajiv}, <br>
+                &ensp; &ensp; booktitle = {ACM Special Interest Group on Computer Graphics and Interactive Techniques (SIGGRAPH)}, <br>
+<!--                &ensp; &ensp; pages = {817-826}, <br>-->
+                &ensp; &ensp; month = {July}, <br>
+                &ensp; &ensp; year = {2024}, <br>
+                &ensp; &ensp; doi = {10.1145/3641519.3657498} <br>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content - End -->
+
+</body>
+</html>
