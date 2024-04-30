@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+        }
+        video {
+            width: 45vw;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            
+        }
+        figcaption {
+            text-align: center;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        p {
+            margin-left: 10%;
+            margin-right: 10%;
+<!--            text-align: center;-->
+        }
+        .three_videos {
+            width: 60vw;
+        }
+        .one_video_left {
+            width: 25vw;
+            height:auto;
+            margin:0;
+        }
+        .one_video_right {
+            width: 25vw;
+            height:auto;
+            margin:0;
+        }
+        .two_video_row {
+            width: auto;
+            display: inline-block;
+        }
+        .wrapper {
+            display: flex;
+            gap: 20%;
+            justify-content: center;
+        }
+        .vid1 {
+            margin: 0;
+            height: auto;
+
+        }
+        .vid2 {
+            margin:0;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1 id="top">Video Comparisons</h1>
+<h3>Table of contents</h3>
+
+<ol>
+    <li><a href="#Simple-ZipNeRF">Simple-ZipNeRF</a>
+        <ol type="a">
+            <li><a href="#Simple-ZipNeRF-Effect-of-Augmentations">Effect of Augmentations</a></li>
+            <li><a href="#Simple-ZipNeRF-Comparisons">Comparisons with Competing Models</a></li>
+        </ol>
+    </li>
+    <li><a href="#Simple-NeRF">Simple-NeRF</a>
+        <ol type="a">
+            <li><a href="#Simple-NeRF-Effect-of-Augmentations">Effect of Augmentations</a></li>
+            <li><a href="#Simple-NeRF-Comparisons">Comparisons with Competing Models</a></li>
+            <li><a href="#Simple-NeRF-Ablations">Comparisons with Ablations</a></li>
+        </ol>
+    </li>
+    <li><a href="#Simple-TensoRF">Simple-TensoRF</a>
+        <ol type="a">
+            <li><a href="#Simple-TensoRF-Effect-of-Augmentations">Effect of Augmentations</a></li>
+            <li><a href="#Simple-TensoRF-Comparisons">Comparisons with Competing Models</a></li>
+        </ol>
+    </li>
+    <li><a href="#Miscellaneous">Miscellaneous</a>
+        <ol type="a">
+            <li><a href="#misc1">Lenticular effect due to Shape-Radiance ambiguity in NeRF</a></li>
+            <li><a href="#misc2">Effect of Mass Concentration Loss in TensoRF Augmented Model</a></li>
+            <li><a href="#misc3">TensoRF Augmented Models with only one of fewer components or lower resolution</a></li>
+        </ol>
+    </li>
+</ol>
+
+
+<h1 id="Simple-ZipNeRF">Simple-ZipNeRF</h1>
+    <h2 id="Simple-ZipNeRF-Effect-of-Augmentations">Effect of Augmentations</h2>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="three_videos">
+                <source src="videos/SimpleZipNeRF_SmoothingAugmentationEffect_MipNeRF360_bicycle.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: MipNeRF360 / bicycle;
+                We observe that the renders of ZipNeRF contain severe floaters.
+                Our augmentation reduces floaters significantly, but contains severe blur in cycle spokes, the grass and the background greenery.
+                Simple-ZipNeRF obtains the best of both worlds, reducing floaters and maintaining sharpness.
+            </figcaption>
+        </figure>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="three_videos">
+                <source src="videos/SimpleZipNeRF_AugmentationsEffects_MipNeRF360_kitchen.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: MipNeRF360 / kitchen;
+                Here we visualize the effect in ZipNeRF renders by reducing the sampling domain first and then reducing the hash table size in the augmented model.
+                Reducing the sampling domain removes most of the floaters close to the camera, but there exist undesired depth discontinuties in the scene.
+                Reducing the hash table size induces smoothness in the augmented model which helps in reducing such undesired depth discontinuities.
+            </figcaption>
+        </figure>
+    <a href="#top">Back to top</a>
+    <h2 id="Simple-ZipNeRF-Comparisons">Comparisons with Competing Models</h2>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/ZipNeRF_SimpleZipNeRF_MipNeRF360_bonsai.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: MipNeRF360 / bonsai;
+                We observe that ZipNeRF fails to reconstruct the bonsai and creates floaters.
+            </figcaption>
+        </figure>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/ZipNeRF_SimpleZipNeRF_MipNeRF360_counter.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: MipNeRF360 / counter;
+                We find that ZipNeRF introduces severe floaters by placing objects close to the camera.
+            </figcaption>
+        </figure>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/ZipNeRF_SimpleZipNeRF_MipNeRF360_stump.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: MipNeRF360 / stump;
+                We observe that ZipNeRF fails to reconstruct the tree stump at the center of the video.
+                Further, the background objects are also not reconstructed properly.
+            </figcaption>
+        </figure>
+
+    <a href="#top">Back to top</a>
+
+<h1 id="Simple-NeRF">Simple-NeRF</h1>
+    <h2 id="Simple-NeRF-Effect-of-Augmentations">Effect of Augmentations</h2>
+        <h3>Smoothing Augmentation</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="three_videos">
+                    <source src="videos/SimpleNeRF_SmoothingAugmentationEffect_LLFF_flower.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / flower;
+                    We observe that the renders of NeRF contain several floaters.
+                    Our augmentation reduces floaters significantly, but fails to learn sharp depth edges at the end of the flower.
+                    Simple-NeRF reduces the floaters while retaining sharp depth edges.
+                    The remaining smooth depth edges in Simple-NeRF are in the disoccluded regions.
+                </figcaption>
+            </figure>
+        <h3>Lambertian Augmentation</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="three_videos">
+                    <source src="videos/SimpleNeRF_LambertianAugmentationEffect_LLFF_room_SC.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / room; Here, we visualize the effects of view-dependent radiance by rendering the same objects from varying viewpoints.
+                    This is similar to the right video in "View-Dependent Appearance" section on the <a href="https://www.matthewtancik.com/nerf">original NeRF website</a>.
+                    For reference, we show the scene as observed from the moving camera in the top left corner of each video. <br>
+                    We observe that DS-NeRF is unable to learn the geometry of the object on the table.
+                    Instead, it changes the color of the table based on the viewpoint to give an illusion of the object (lenticular effect).
+                    Our Lambertian augmentation does not suffer from this shape-radiance ambiguity since it predicts color independent of the viewpoint.
+                    Supervising the main NeRF from the Lambertian augmentation helps Simple-NeRF better learn the geometry of the object on the table.
+                </figcaption>
+            </figure>
+    <a href="#top">Back to top</a>
+
+    <h2 id="Simple-NeRF-Comparisons">Comparisons with Competing Models</h2>
+        <h3>DS-NeRF v/s Simple-NeRF</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/DSNeRF_SimpleNeRF_RealEstate_00004.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: RealEstate / 00004;
+                    We find that DS-NeRF predictions are blurred and lack detail.
+                    Simple-NeRF predictions are sharper and more detailed.
+                </figcaption>
+            </figure>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/DSNeRF_SimpleNeRF_RealEstate_00006.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: RealEstate / 00006;
+                    We find that DS-NeRF predictions are blurred and lack detail.
+                    Simple-NeRF predictions are sharper and more detailed.
+                </figcaption>
+            </figure>
+
+        <h3>DDP-NeRF v/s Simple-NeRF</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/DDPNeRF_SimpleNeRF_RealEstate_00000.mp4" type="video/mp4">
+                </video>
+                <figcaption>Scene: RealEstate / 00000;
+                    We observe ghosting artifacts on top of the chair nearest to the camera in DS-NeRF rendered video.
+                </figcaption>
+            </figure>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/DDPNeRF_SimpleNeRF_RealEstate_00003.mp4" type="video/mp4">
+                </video>
+                <figcaption>Scene: RealEstate / 00003;
+                    We find that DDP-NeRF predictions are blurred in the regions containing trees and twigs, whereas Simple-NeRF predictions are sharper.
+                </figcaption>
+            </figure>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/DDPNeRF_SimpleNeRF_RealEstate_room.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / room;
+                    We observe that DDP-NeRF predictions contain severe distortions.
+                    Many of these distortions have been mitigated by Simple-NeRF. <br>
+                    Although we still observe a few distortions in Simple-NeRF predictions, they are probably due to the objects visible in less than two input views and also due to the difficulty of the scene.
+                    With specular objects, it may be difficult to learn the 3D geometry accurately with three input views only.
+                </figcaption>
+            </figure>
+
+        <h3>RegNeRF v/s Simple-NeRF</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/RegNeRF_SimpleNeRF_LLFF_flower.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / flower;
+                    We observe floater artifacts in RegNeRF predictions, which are mitigated by Simple-NeRF.
+                </figcaption>
+            </figure>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/RegNeRF_SimpleNeRF_LLFF_orchids.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / orchids;
+                    We observe floater artifacts in RegNeRF predictions, which are mitigated by Simple-NeRF.
+                </figcaption>
+            </figure>
+
+        <h3>FreeNeRF v/s Simple-NeRF</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/FreeNeRF_SimpleNeRF_LLFF_fortress.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / fortress;
+                    We find that FreeNeRF predictions contain a hole in the table and the table surface regions are at different depths.
+                    Simple-NeRF predictions appear much more plausible without the above mentioned artifacts.
+                </figcaption>
+            </figure>
+
+        <h3>ViP-NeRF v/s Simple-NeRF</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/ViPNeRF_SimpleNeRF_RealEstate_00001.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: RealEstate / 00001;
+                    We observe distortions in the shape of the edges in the roof and the floor on the right in ViP-NeRF predictions.
+                    Simple-NeRF mitigates these significantly.
+                </figcaption>
+            </figure>
+    <a href="#top">Back to top</a>
+
+    <h2 id="Simple-NeRF-Ablations">Comparisons with Ablated Models</h2>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/SimpleNeRF_withoutSmoothingAugmentation_LLFF_fortress.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: LLFF / fortress;
+                We find that disabling the Smoothing Augmentation leads to more floaters in the predictions.
+            </figcaption>
+        </figure>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/SimpleNeRF_withoutLambertianAugmentation_LLFF_room_SC.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: LLFF / room;
+                Here, we visualize the radiance/color of the same 3D objects as the viewpoint varies.
+                Disabling Lambertian Augmentation leads to severe Shape-Radiance Ambiguity among the chairs on the left.
+            </figcaption>
+        </figure>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/SimpleNeRF_withIdentialAugmentations_LLFF_fortress.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: LLFF / fortress;
+                We notice that using Identical NeRF models as Augmentations also leads to floaters in the predictions.
+            </figcaption>
+        </figure>
+
+
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/SimpleNeRF_withIdentialAugmentations_LLFF_rrom_SC.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: LLFF / room;
+                Here, we visualize the radiance/color of the same 3D objects as the viewpoint varies.
+                Using Identical Augmentation instead of Lambertian Augmentation leads to Shape-Radiance Ambiguity around the chairs on the left.
+            </figcaption>
+        </figure>    
+    <a href="#top">Back to top</a>
+
+<h1 id="Simple-TensoRF">Simple-TensoRF</h1>
+    <h2 id="Simple-TensoRF-Effect-of-Augmentations">Effect of Augmentations</h2>
+        <h3 id="">Smoothing augmentation</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="three_videos">
+                    <source src="videos/SimpleTensoRF_SmoothingAugmentationEffect_LLFF_flower.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / flower;
+                    We observe translucent floaters around the flower in the renders of DS-TensoRF.
+                    While our augmentation reduces floaters significantly, it fails to learn sharp depth edges at the end of the flower.
+                    Simple-TensoRF reduces the floaters while retaining sharp depth edges.
+                    The remaining smooth depth edges in Simple-TensoRF are in the disoccluded regions.
+                </figcaption>
+            </figure>
+    <a href="#top">Back to top</a>
+    <h2 id="Simple-TensoRF-Comparisons">Comparisons with Competing Models</h2>
+        <h3>TensoRF vs Simple-TensoRF</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/TensoRF_SimpleTensoRF_LLFF_fern.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / fern;
+                    We observe that Simple-TensoRF predictions are significantly better than that of TensoRF.
+                </figcaption>
+            </figure>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/TensoRF_SimpleTensoRF_RealEstate_00003.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: RealEstate / 00003;
+                    We observe that TensoRF fails to learn correct geometry of the scene and instead replicates multiple copies of the objects.
+                    Simple-TensoRF does not suffer from such issues.
+                </figcaption>
+            </figure>
+
+        <h3>DS-TensoRF vs Simple-TensoRF</h3>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/DSTensoRF_SimpleTensoRF_LLFF_flower.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: LLFF / flower;
+                    We observe that Simple-TensoRF reduces floaters as compared to DS-TensoRF.
+                </figcaption>
+            </figure>
+            <figure>
+                <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                    <source src="videos/DSTensoRF_SimpleTensoRF_RealEstate_00001.mp4" type="video/mp4">
+                </video>
+                <figcaption>
+                    Scene: RealEstate / 00001;
+                    DS-TensoRF fails to properly reconstruct the textures on the left door.
+                    It also fails to properly reconstruct the geometry of the bottom part of the door on the right.
+                    Simple-TensoRF produces significant better renders in both regions.
+                </figcaption>
+            </figure>
+    <a href="#top">Back to top</a>
+
+
+
+<h1 id="Miscellaneous">Miscellaneous</h1>
+    <h2 id="misc1">NeRF: Lenticular effects due to Shape-Radiance ambiguity</h2>
+        <div>
+            <div class="wrapper">
+                <figure class="two_video_row vid1">
+                    <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="one_video_left">
+                        <source src="videos/DSNeRF_LenticularEffect_LLFF_room_SC.mp4" type="video/mp4" >
+                    </video>
+                    <figcaption>
+                        Scene: LLFF / room
+                    </figcaption>
+                </figure>
+                <figure class="two_video_row vid2">
+                    <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="one_video_right">
+                        <source src="videos/DSNeRF_LenticularEffect_LLFF_trex_SC.mp4" type="video/mp4" >
+                    </video>
+                    <figcaption>
+                        Scene: LLFF / trex
+                    </figcaption>
+                </figure>
+            </div>
+            <p>
+                The above two videos visualize how the radiance/color of the same 3D objects changes as the viewpoint varies, as learned by DS-NeRF.
+                Observe how the objects in the scene change their position as the viewpoint changes.
+                Specifically, observe the object on the table in the room scene and the roof in the trex scene.
+                DS-NeRF is learning incorrect geometry but explains the observed images by simply varying the color of a different object.
+            </p>
+        </div>
+    <a href="#top">Back to top</a>
+
+    <h2 id="misc2">Simple-TensoRF: Augmented Model with and without Mass Concentration Loss</h2>
+        <figure>
+            <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;">
+                <source src="videos/TensoRF_without_with_MassConcentrationLoss_LLFF_horns.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Scene: LLFF / horns;
+                We show the effect of mass concentration loss on the augmented model of Simple-TensoRF.
+                We observe several translucent floaters in the left video, which can lead to incorrect depth supervision to the main TensoRF.
+                Adding the mass concentration loss reduces such translucent floaters leading to better depth supervision.
+            </figcaption>
+        </figure>
+    <a href="#top">Back to top</a>
+
+    <h2 id="misc3">Simple-TensoRF: Augmented Model with only one of fewer number of components or lower resolution</h2>
+        <div>
+            <div class="wrapper">
+                <figure class="two_video_row vid1">
+                    <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="one_video_left">
+                        <source src="videos/TensoRF_FewerComponents_LLFF_horns.mp4" type="video/mp4" >
+                    </video>
+                    <figcaption>
+                        Scene: LLFF / horns
+                    </figcaption>
+                </figure>
+                <figure class="two_video_row vid2">
+                    <video autoplay loop muted controls onloadstart="this.playbackRate = 0.5;" class="one_video_right">
+                        <source src="videos/TensoRF_LowerResolution_LLFF_room.mp4" type="video/mp4" >
+                    </video>
+                    <figcaption>
+                        Scene: LLFF / room
+                    </figcaption>
+                </figure>
+            </div>
+            <p>
+                In the left video, reducing only the number of components in the augmented model leads to tiny floaters, since the model can exploit the higher resolution.
+                In the right video, reducing only the resolution of the augmented model leads to block floaters, since the model can exploit the higher number of components to create floaters at voxel edges.
+            </p>
+        </div>
+    <a href="#top">Back to top</a>
+
+</body>
+</html>
+

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple-RF: Regularizing Sparse Input Radiance Fields with Simpler Solutions</title>
+    <link rel="stylesheet" href="../../res/styles/w3.css">
+    <link rel="stylesheet" href="../../res/styles/common.css">
+    <link rel="stylesheet" href="../../res/styles/navigation.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="../../res/scripts/navigation.js"></script>
+
+    <link rel="stylesheet" href="simplerf/styles/simplerf.css">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Simple-RF: Regularizing Sparse Input Radiance Fields with Simpler Solutions">
+    <meta name="keywords"
+          content="Neural Radiance Fields, Tensorial Radiance Fields, Radiance Fields, NeRF, TensoRF, ZipNeRF, Simple-NeRF, SimpleNeRF, Simple-TensoRF, Simple-ZipNeRF, Neural Rendering, View Synthesis, Sparse Input, Sparse View, Learnt Depth Prior, Simpler Solutions">
+    <meta name="author" content="Nagabhushan S N">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- Page content - Start -->
+<div class="w3-main">
+    <div class="w3-container" id="title-panel">
+        <h1 class="page-title">Simple-RF: Regularizing Sparse Input Radiance Fields with Simpler Solutions</h1>
+        <p class="page-subtitle">Under review</p>
+        <p style="text-align: center; font-size: large">
+            <a href="../../index.html"><u>Nagabhushan Somraj</u></a>,
+            <a href="https://orcid.org/0009-0008-3343-8566"><u>Adithyan Karanayil</u></a>,
+            <a href="https://orcid.org/0009-0003-1638-7051"><u>Sai Harsha Mupparaju</u></a> and
+            <a href="https://ece.iisc.ac.in/~rajivs"><u>Rajiv Soundararajan</u></a>
+        </p>
+        <p style="text-align: center; font-size: large">
+            Indian Institute of Science
+        </p>
+        <div class="w3-container" id="downloads" style="text-align: center">
+<!--            <a href="">-->
+<!--                <button class="link-button" title="View paper on ACM Library">ACM</button>-->
+<!--            </a>-->
+            <a href="https://arxiv.org/abs/2404.">
+                <button class="link-button" title="View paper on arXiv">arXiv</button>
+            </a>
+            <a href="https://github.com/NagabhushanSN95/Simple-RF">
+                <button class="link-button" title="View Code on GitHub">Code</button>
+            </a>
+<!--            <a href="">-->
+<!--                <button class="link-button" title="View SIGGRAPH 2024 Slides">Slides</button>-->
+<!--            </a>-->
+<!--            <a href="">-->
+<!--                <button class="link-button" title="View SIGGRAPH 2024 Poster">Poster</button>-->
+<!--            </a>-->
+        </div>
+    </div>
+
+    <div class="w3-container" style="width: 90%; margin-left: 5%; margin-top: 50px">
+        <div class="w3-container" id="list-of-contents">
+            <a href="#list-of-contents"><h2><u>Contents</u></h2></a>
+            <ul>
+                <li><a href="#abstract">Abstract</a></li>
+<!--                <li><a href="#representative-figure">Representative Figure</a></li>-->
+<!--                <li><a href="#video-presentations">Technical Talks on this work</a></li>-->
+                <li><a href="simplerf/VideoSamples.html">Video Comparisons</a></li>
+                <li><a href="#citation">Citation</a></li>
+            </ul>
+        </div>
+
+        <div class="w3-container" id="abstract">
+            <a href="#abstract"><h2><u>Abstract</u></h2></a>
+            Neural Radiance Fields (NeRF) show impressive performance in photo-realistic free-view rendering of scenes.
+            Recent improvements on the NeRF such as TensoRF and ZipNeRF employ explicit models for faster optimization and rendering, as compared to the NeRF that employs an implicit representation.
+            However, both implicit and explicit radiance fields require dense sampling of images in the given scene.
+            Their performance degrades significantly when only a sparse set of views is available.
+            Researchers find that supervising the depth estimated by a radiance field helps train it effectively with fewer views.
+            The depth supervision is obtained either using classical approaches or neural networks pre-trained on a large dataset.
+            While the former may provide only sparse supervision, the latter may suffer from generalization issues.
+            As opposed to the earlier approaches, we seek to learn the depth supervision by designing augmented models and training them along with the main radiance field.
+            Further, we aim to design a framework of regularizations that can work across different implicit and explicit radiance fields.
+            We observe that certain features of these radiance field models overfit to the observed images in the sparse-input scenario.
+            Our key finding is that reducing the capability of the radiance fields with respect to positional encoding, the number of decomposed tensor components or the size of the hash table, constrains the model to learn simpler solutions, which estimate better depth in certain regions.
+            By designing augmented models based on such reduced capabilities, we obtain better depth supervision for the main radiance field.
+            We achieve state-of-the-art view-synthesis performance with sparse input views on popular datasets containing forward-facing and 360$\degree$ scenes by employing the above regularizations.
+        </div>
+
+<!--        <div class="w3-container" id="representative-figure">-->
+<!--            <a href="#representative-figure"><h2><u>Representative Figure</u></h2></a>-->
+
+<!--            <img src="simplerf/images/RepresentativeFigure.jpg" alt="Representative Figure" id="fig-representative-figure" style="width: 100%"/>-->
+<!--        </div>-->
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+<!--        <div class="w3-container" id="video-presentations">-->
+<!--            <a href="#video-presentations"><h2><u>Technical Talks on this work</u></h2></a>-->
+<!--            <ul>-->
+<!--                <li> SIGGRAPH 2023 prerecorded video:-->
+<!--                    <div class="w3-container" id="ismar-video">-->
+<!--                        <iframe width="720" height="405"-->
+<!--                                src="https://www.youtube.com/embed/_wA8gEONaOc">-->
+<!--                        </iframe>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li> 30 min talk:-->
+<!--                    <div class="w3-container" id="siggraph-video">-->
+<!--                        <iframe width="560" height="315" title="YouTube video player" style="border: none" allowfullscreen-->
+<!--                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"-->
+<!--                                src="https://www.youtube.com/embed/RbyVxi1zWzU?si=vkBKFzvA7-yJ2PJ6">-->
+<!--                        </iframe>-->
+<!--                    </div>-->
+<!--                </li>-->
+
+<!--                <li>18-Oct-2022: In <a href="https://ismar2022.org/program-paper-presentations/#rendering1">ISMAR 2022</a>.-->
+<!--                    [<a href="">Video</a>]</li>-->
+<!--                <li>01-Feb-2022: In <a href="../../miscellaneous.html#iisc-srss-2022-decompnet">IISc Student Research Seminar Series, 2022</a>.-->
+<!--                    [<a href="https://www.youtube.com/watch?v=Zz1cF76qdDw">Video</a>]</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+        <div class="w3-container" id="video-comparisons">
+            <a href="#video-comparisons"><h2><u>Sample comparison videos</u></h2></a>
+            <figure style="width: 100%">
+                <video id="video-comparison-zipnerf1" class="video-comparisons-zipnerf" autoplay loop muted controls>
+                    <source src="simplerf/videos/SimpleZipNeRF_SmoothingAugmentationEffect_MipNeRF360_bicycle.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="caption">
+                    We observe that the renders of ZipNeRF contain severe floaters.
+                    Our augmentation reduces floaters significantly, but contains severe blur in cycle spokes, the grass and the background greenery.
+                    Simple-ZipNeRF obtains the best of both worlds, reducing floaters and maintaining sharpness.
+                </figcaption>
+            </figure>
+
+            Extensive video comparisons are available <a href="simplerf/VideoSamples.html" style="text-decoration: underline">here</a>.
+        </div>
+
+        <hr class="w3-dark-gray" style="height: 1px; width: 100%">
+
+        <div class="w3-container" id="citation">
+            <a href="#citation"><h2><u>Citation</u></h2></a>
+            If you use our work, please cite our paper:
+            <div class="citation" style="margin-bottom: 25px">
+                Nagabhushan Somraj, Adithyan Karanayil and Sai Harsha Mupparaju and Rajiv Soundararajan,
+                "Simple-RF: Regularizing Sparse Input Radiance Fields with Simpler Solutions",
+                In <i>arXiv: 2404:</i>.
+            </div>
+
+            <u>Bibtex</u>:
+            <div class="citation" style="margin-bottom: 25px">
+                @article{somraj2024simplerf, <br>
+                &ensp; &ensp; title = {{Simple-RF}: Regularizing Sparse Input Radiance Fields with Simpler Solutions}, <br>
+                &ensp; &ensp; author = {Somraj, Nagabhushan and Karanayil, Adithyan and Mupparaju, Sai Harsha and Soundararajan, Rajiv}, <br>
+                &ensp; &ensp; journal = {arXiv: 2404.}, <br>
+<!--                &ensp; &ensp; pages = {817-826}, <br>-->
+                &ensp; &ensp; month = {May}, <br>
+                &ensp; &ensp; year = {2024}, <br>
+                &ensp; &ensp; doi = {} <br>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content - End -->
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* Shree KRISHNAya Namaha */
+
+h2, h3 {
+    color: #e91e63;
+    /*padding-top: 5px;*/
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2196F3;
+}
+
+a h2:hover, h3:hover {
+    color: #2196F3;
+}
+
+figure {
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+video {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.link-button {
+    background-color: rgba(143, 141, 141, 0.13);
+    border-radius: 5px;
+}
+
+.link-button:hover {
+    background-color: #ffffff22;
+}
+
+.caption {
+    text-align: center;
+    /*display: block;*/
+}
+
+.citation {
+    background-color: #f1f1f1;
+    font-family: monospace;
+    padding: 10px 25px;
+}
+
+.video-comparisons-zipnerf {
+    max-width: 1380px;
+    width: 100%;
+    height: auto;
+}
+
+#title-panel {
+    background-color: rgba(31, 31, 31, 0.27);
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+@media (min-width: 900px) {
+    .link-button {
+        width: 200px;
+        margin: 10px 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .link-button {
+        width: 40%;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+#siggraph-video {
+    text-align: center;
+}
+
+#fig-summary {
+    width: 100%;
+    max-width: 4434px;
+    height: auto;
+}
+
+#fig-decompnet-block-diagram {
+    width: 100%;
+    max-width: 5386px;
+    height: auto;
+}
+
+#fig-frame-life-cycle {
+    width: 100%;
+    max-width: 1616px;
+    height: auto;
+}
+
+#fig-qualitative-comparisons-veedd {
+    width: 100%;
+    /*max-width: 500px;*/
+    height: auto;
+}
+
+#fig-qualitative-comparisons-sintel {
+    width: 100%;
+    /*max-width: 500px;*/
+    height: auto;
+}
+
+#fig-qualitative-comparisons-2d-vs-3d {
+    width: 100%;
+    max-width: 2036px;
+    height: auto;
+}
