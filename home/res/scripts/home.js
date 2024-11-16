@@ -3,5 +3,5 @@
 
 function displayEmail() {
     var email_button = document.getElementById("email");
-    email_button.innerHTML = "nagabhushans@iisc.ac.in";
+    email_button.innerHTML = "nagabhushan@apreeai.com";
 }
