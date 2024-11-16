@@ -3,5 +3,5 @@
 
 function displayEmail() {
     var email_button = document.getElementById("email");
-    email_button.innerHTML = "nagabhushan@apreeai.com";
+    email_button.innerHTML = "nagabhushan@spreeai.com";
 }
