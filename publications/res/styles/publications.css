@@ -1,21 +1,25 @@
 /* Shree KRISHNAya Namaha */
 
+ol li + li {
+    margin-top: 0.5em;
+}
+
 a:link {
     color: black;
     text-decoration: none;
 }
 
 a:hover {
-    color: #2196F3;
+    color: #4A7FA5;
     text-decoration: underline;
 }
 
 
 a.colored-link, a.colored-link:link, a.colored-link:visited {
-    color: #2196F3;
+    color: #4A7FA5;
     text-decoration: none;
 }
 a.colored-link, a.colored-link:hover {
-    color: #0072b1;
+    color: #2E5F80;
     text-decoration: underline;
 }
